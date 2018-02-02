@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/margin_Large"
+    android:background="@color/silver">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="@dimen/dimen_Small"
+        android:layout_height="@dimen/dimen_Small"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="@dimen/margin_Small"
+        android:src="@drawable/profile"
+        android:visibility="gone" />
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+        android:id="@+id/msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="@dimen/margin_Medium"
+        android:layout_marginRight="@dimen/margin_Medium"
+        android:layout_marginTop="@dimen/margin_Medium"
+        android:background="@drawable/button"
+        android:backgroundTint="@color/whiteDark"
+        android:drawablePadding="@dimen/margin_Medium"
+        android:padding="@dimen/margin_Small"
+        android:textColor="@color/black_fat7" />
+
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_Large"
+        android:layout_alignParentTop="true"
+        android:layout_margin="@dimen/margin_Medium"
+        android:layout_toRightOf="@id/logo" />
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_margin="@dimen/margin_Small"
+        android:paddingLeft="@dimen/margin_Medium"
+        android:textColor="@color/red"
+        android:textSize="@dimen/text_Small"
+        android:visibility="gone" />
+
+</RelativeLayout>

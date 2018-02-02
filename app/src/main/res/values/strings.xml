@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Shopping</string>
+    <string name="skip"><u>متابعه</u></string>
+    <string name="logout"><u>logout</u></string>
+    <string name="facebook_app_id">1900553956871097</string>
+    <string name="fb_login_protocol_scheme">fb1900553956871097</string>
+
+</resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/margin_Small"
+    android:layout_marginTop="@dimen/margin_Small"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="@dimen/dimen_Small"
+        android:layout_height="@dimen/dimen_Small"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="@dimen/margin_Medium" />
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeButton
+        android:id="@+id/followButton"
+        android:layout_width="@dimen/dimen_Small"
+        android:layout_height="@dimen/dimen_VerySmall"
+        android:layout_alignParentRight="true"
+        android:layout_centerInParent="true"
+        android:layout_margin="@dimen/margin_Small"
+        android:background="@drawable/button"
+        android:backgroundTint="@color/blue"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_VerySmall" />
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_Small"
+        android:layout_marginLeft="@dimen/margin_Medium"
+        android:layout_marginRight="@dimen/margin_Medium"
+        android:layout_marginTop="@dimen/margin_Large"
+        android:layout_toLeftOf="@id/followButton"
+        android:layout_toRightOf="@id/logo"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/black_8am2"
+        android:textSize="@dimen/text_Small" />
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+        android:id="@+id/followers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_marginBottom="@dimen/margin_Small"
+        android:layout_marginLeft="@dimen/margin_Medium"
+        android:layout_marginRight="@dimen/margin_Medium"
+        android:layout_marginTop="@dimen/margin_Small"
+        android:layout_toLeftOf="@id/followButton"
+        android:layout_toRightOf="@id/logo"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/black_fat7"
+        android:textSize="@dimen/text_Small" />
+</RelativeLayout>

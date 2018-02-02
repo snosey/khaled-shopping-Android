@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/silver"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- Top -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shadow"
+                android:orientation="vertical">
+
+                <!-- header -->
+                <LinearLayout
+                    android:id="@+id/top"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shadow"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/back"
+                        android:layout_width="23dp"
+                        android:layout_height="23dp"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/margin_Medium"
+                        android:onClick="back"
+                        android:src="@drawable/back"
+                        android:tint="@color/black_8am2" />
+
+                    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                        android:id="@+id/title"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="33dp"
+                        android:ellipsize="end"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textColor="@color/black_8am2"
+                        android:textSize="@dimen/text_Medium"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <!-- follow , logo , msg -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- follow -->
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dimen_Medium"
+                        android:layout_gravity="center"
+                        android:layout_weight=".15"
+                        android:padding="@dimen/margin_Medium"
+                        android:src="@drawable/follower"
+                        android:tint="@android:color/darker_gray"
+                        android:visibility="gone" />
+
+                    <!-- logo -->
+                    <ImageView
+                        android:id="@+id/logo"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dimen_Large"
+                        android:layout_gravity="center"
+                        android:layout_weight=".7"  />
+
+                    <!-- msg -->
+                    <ImageView
+                        android:id="@+id/msg"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dimen_Medium"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/margin_Medium"
+                        android:layout_weight=".15"
+                        android:padding="@dimen/margin_Medium"
+                        android:src="@drawable/edit_email"
+                        android:tint="@color/red"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+
+
+                <!-- msg button
+                <com.example.pc.khaledwaleedshopping.Support.design.CustomeButton
+                    android:id="@+id/msg"
+                    android:layout_width="@dimen/dimen_Medium"
+                    android:layout_height="@dimen/dimen_VeryVerySmall"
+                    android:layout_gravity="center"
+                    android:layout_margin="@dimen/margin_VerySmall"
+                    android:background="@drawable/button"
+                    android:backgroundTint="@color/red"
+                    android:text="message seller"
+                    android:textColor="@color/white" />
+                   -->
+                <com.example.pc.khaledwaleedshopping.Support.design.CustomeButton
+                    android:id="@+id/followButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_VeryVerySmall"
+                    android:layout_gravity="center"
+                    android:background="@color/blue"
+                    android:text="follow"
+                    android:textColor="@color/white" />
+
+                <!-- rate -->
+                <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                    android:id="@+id/clientReviews"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/silver"
+                    android:drawablePadding="@dimen/margin_Medium"
+                    android:drawableRight="@drawable/edit_user"
+                    android:gravity="left|center"
+                    android:padding="@dimen/margin_Medium"
+                    android:textColor="@color/black_fat7"
+                    android:textSize="@dimen/text_VerySmall" />
+
+                <!-- follow and followers -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- followers -->
+                    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                        android:id="@+id/followers"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/margin_Medium"
+                        android:gravity="right"
+                        android:text="0"
+                        android:textColor="@color/blue" />
+
+                    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+
+                        android:id="@+id/followersText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/margin_VerySmall"
+                        android:text="followers,"
+                        android:textColor="@color/black_8am2" />
+
+                    <!-- following-->
+                    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                        android:id="@+id/following"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/margin_Medium"
+                        android:gravity="right"
+                        android:text="0"
+                        android:textColor="@color/blue" />
+
+                    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                        android:id="@+id/followingText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/margin_VerySmall"
+                        android:text="following"
+                        android:textColor="@color/black_8am2" />
+
+                </LinearLayout>
+
+
+                <!-- description -->
+                <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_Medium"
+                    android:textColor="@color/black_fat7"
+                    android:textSize="@dimen/text_Small" />
+
+            </LinearLayout>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/productList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_Medium"
+                android:fadeScrollbars="false"
+                android:scrollbarFadeDuration="0"
+                android:scrollbarSize="1dp"
+                android:scrollbars="vertical" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.willy.ratingbar.ScaleRatingBar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rb="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/simpleRatingBar5"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    rb:numStars="3"
+    rb:rating="2"
+    rb:starPadding="15"
+    rb:touchable="true">
+</com.willy.ratingbar.ScaleRatingBar>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/silver">
+
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/shadow"
+        android:orientation="vertical">
+
+
+        <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_Medium"
+            android:gravity="left|center"
+            android:text="Forum"
+            android:textColor="@color/black_8am2"
+            android:textSize="@dimen/text_Medium"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/spinnerKind"
+            android:layout_marginBottom="@dimen/margin_Medium" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+
+        <ImageView
+            android:id="@+id/home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_Medium"
+            android:layout_weight="1"
+            android:onClick="home"
+            android:padding="2dp"
+            android:src="@drawable/home"
+            android:tint="@android:color/darker_gray" />
+
+        <ImageView
+            android:id="@+id/forum"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_Medium"
+            android:layout_weight="1"
+            android:padding="2dp"
+            android:src="@drawable/forum"
+            android:tint="@color/blue" />
+
+        <ImageView
+            android:id="@+id/add_product"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_Small"
+            android:layout_weight="1"
+            android:onClick="addProduct"
+            android:paddingBottom="3dp"
+            android:src="@drawable/add"
+            android:tint="@color/red" />
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_Medium"
+                android:onClick="msg"
+                android:padding="2dp"
+                android:src="@drawable/msg"
+                android:tint="@android:color/darker_gray" />
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:id="@+id/msgNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/margin_Small"
+                android:background="@drawable/button"
+                android:backgroundTint="@color/red"
+                android:padding="@dimen/margin_VerySmall"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_VerySmall"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_Medium"
+            android:layout_weight="1"
+            android:onClick="profile"
+            android:padding="2dp"
+            android:src="@drawable/myprofile"
+            android:tint="@android:color/darker_gray" />
+
+    </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/forumList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottom"
+        android:layout_below="@id/top"
+        android:layout_margin="@dimen/margin_Medium" />
+
+</RelativeLayout>

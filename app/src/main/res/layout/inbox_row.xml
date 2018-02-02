@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shadow">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/margin_Small"
+        android:src="@drawable/profile" />
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/margin_Small"
+        android:textColor="@color/black_fat7"
+        android:textSize="@dimen/text_VerySmall" />
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:gravity="left"
+        android:layout_margin="@dimen/margin_VerySmall"
+        android:layout_toRightOf="@id/logo"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/black_8am2"
+        android:textSize="@dimen/text_Medium" />
+
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+        android:id="@+id/productName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/name"
+        android:layout_margin="@dimen/margin_VerySmall"
+        android:layout_alignParentLeft="true"
+        android:gravity="left"
+        android:layout_toRightOf="@id/logo"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/red"
+        android:textSize="@dimen/text_Small" />
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+        android:id="@+id/msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/productName"
+        android:layout_margin="@dimen/margin_VerySmall"
+        android:layout_alignParentLeft="true"
+        android:gravity="left"
+        android:layout_toRightOf="@id/logo"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/text_Small" />
+
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+        android:id="@+id/unSeen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/msg"
+        android:layout_margin="@dimen/margin_VerySmall"
+        android:layout_alignParentLeft="true"
+        android:padding="@dimen/margin_Small"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:background="@drawable/button"
+        android:backgroundTint="@color/red"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_VerySmall" />
+
+</RelativeLayout>

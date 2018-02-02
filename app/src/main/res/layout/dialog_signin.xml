@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dimen_Large"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_Medium"
+        android:hint="username"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textSize="@dimen/text_Small" />
+
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_Medium"
+        android:hint="password"
+        android:inputType="text"
+        android:maxLines="1"
+        android:textSize="@dimen/text_Small" />
+
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeButton
+        android:id="@+id/signin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_Small"
+        android:background="@color/blue"
+        android:text="Sign in"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_Small" />
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+        android:id="@+id/forget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_Medium"
+        android:text="forget username / password"
+        android:textSize="@dimen/text_VerySmall" />
+
+    <LinearLayout
+        android:id="@+id/forget_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_Small"
+        android:orientation="horizontal"
+        android:visibility="invisible">
+
+        <com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText
+            android:id="@+id/email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_Medium"
+            android:layout_weight=".7"
+            android:hint="email"
+            android:inputType="text"
+            android:maxLines="1"
+            android:textSize="@dimen/text_Small" />
+
+        <com.example.pc.khaledwaleedshopping.Support.design.CustomeButton
+            android:layout_width="0dp"
+            android:layout_height="@dimen/dimen_VerySmall"
+            android:layout_weight=".3"
+            android:background="@drawable/button"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/red"
+            android:text="send"
+            android:id="@+id/send"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_VerySmall" />
+    </LinearLayout>
+
+</LinearLayout>

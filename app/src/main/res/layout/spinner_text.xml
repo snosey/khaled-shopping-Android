@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@drawable/shadow"
+    android:gravity="left"
+    android:drawableRight="@drawable/next"
+    android:padding="@dimen/margin_Medium"
+    android:paddingLeft="@dimen/margin_Medium"
+    android:textColor="@color/colorPrimary"
+    android:textSize="@dimen/text_Small">
+
+</com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView>

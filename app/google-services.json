@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "489967054898",
+    "project_id": "khaled-shopping"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:489967054898:android:ad0d56be27e1cc02",
+        "android_client_info": {
+          "package_name": "com.example.pc.khaledwaleedshopping"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "489967054898-6odcavlu7meopms719ra38p7gqrebu1o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pc.khaledwaleedshopping",
+            "certificate_hash": "d3c67452dda52caaeb1b696e95bf2246ca5388ac"
+          }
+        },
+        {
+          "client_id": "489967054898-08jrg5dfcjhjget3bgbajr102btt89nf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA5TTSFQ1Cyv44HqzUXQ_dFx1Um6J2Mu8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/silver">
+
+
+    <!-- top -->
+    <LinearLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/shadow"
+        android:orientation="horizontal">
+
+
+        <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_Medium"
+            android:layout_weight=".8"
+            android:gravity="left|center"
+            android:text="Profile"
+            android:textColor="@color/black_8am2"
+            android:textSize="@dimen/text_Medium"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <!-- bottom -->
+    <LinearLayout
+        android:id="@+id/bottom"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+
+        <ImageView
+            android:id="@+id/home"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_Medium"
+            android:layout_weight="1"
+            android:onClick="home"
+            android:padding="2dp"
+            android:src="@drawable/home"
+            android:tint="@android:color/darker_gray" />
+
+        <ImageView
+            android:id="@+id/forum"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_Medium"
+            android:layout_weight="1"
+            android:onClick="forum"
+            android:padding="2dp"
+            android:src="@drawable/forum"
+            android:tint="@android:color/darker_gray" />
+
+        <ImageView
+            android:id="@+id/add_product"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_Small"
+            android:layout_weight="1"
+            android:onClick="addProduct"
+            android:paddingBottom="3dp"
+            android:src="@drawable/add"
+            android:tint="@color/red" />
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/margin_Medium"
+                android:onClick="msg"
+                android:padding="2dp"
+                android:src="@drawable/msg"
+                android:tint="@android:color/darker_gray" />
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:id="@+id/msgNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_margin="@dimen/margin_Small"
+                android:background="@drawable/button"
+                android:backgroundTint="@color/red"
+                android:padding="@dimen/margin_VerySmall"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_VerySmall"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/profile"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_Medium"
+            android:layout_weight="1"
+            android:padding="2dp"
+            android:src="@drawable/myprofile"
+            android:tint="@color/blue" />
+
+    </LinearLayout>
+
+
+    <!-- middle -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bottom"
+        android:layout_below="@id/top"
+        android:layout_margin="@dimen/margin_Medium"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".4"
+            android:orientation="horizontal">
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:id="@+id/myProfile"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight=".5"
+                android:drawableTop="@drawable/editprofile"
+                android:gravity="center"
+                android:text="My profile"
+                android:textColor="@color/black_fat7"
+                android:textSize="@dimen/text_Medium" />
+
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:id="@+id/myItems"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight=".5"
+                android:drawableTop="@drawable/myitems"
+                android:gravity="center"
+                android:text="My items"
+                android:textColor="@color/black_fat7"
+                android:textSize="@dimen/text_Medium" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight=".4"
+            android:orientation="horizontal">
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:id="@+id/favor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight=".5"
+                android:drawableTop="@drawable/myfavor"
+                android:gravity="center"
+                android:text="My favourites"
+                android:textColor="@color/black_fat7"
+                android:textSize="@dimen/text_Medium" />
+
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight=".5"
+                android:drawableTop="@drawable/aboutus"
+                android:gravity="center"
+                android:text="About shopping"
+                android:textColor="@color/black_fat7"
+                android:textSize="@dimen/text_Medium" />
+
+        </LinearLayout>
+
+        <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight=".2"
+            android:gravity="center"
+            android:text="@string/logout"
+            android:textColor="@color/red"
+            android:textSize="@dimen/text_Medium" />
+    </LinearLayout>
+
+</RelativeLayout>

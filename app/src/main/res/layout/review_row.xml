@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="7dp"
+    android:background="@drawable/shadow">
+
+    <ImageView
+        android:id="@+id/userIcon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="20dp"
+        android:src="@drawable/profile" />
+
+
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+        android:id="@+id/rate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/userIcon"
+        android:layout_margin="@dimen/margin_Small"
+        android:gravity="left"
+        android:textSize="@dimen/text_VerySmall" />
+
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+        android:id="@+id/clientName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/userIcon"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginStart="18dp"
+        android:layout_toRightOf="@id/userIcon"
+        android:ellipsize="end"
+        android:gravity="left"
+        android:maxLines="1"
+        android:textColor="@color/black_8am2"
+        android:textSize="@dimen/text_Medium"
+        android:visibility="visible" />
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+        android:id="@+id/comment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/clientName"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toRightOf="@id/userIcon"
+        android:textColor="@color/blue"
+        android:textSize="@dimen/text_Small" />
+
+
+    <ImageView
+        android:id="@+id/remove"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/comment"
+        android:layout_margin="@dimen/margin_Medium"
+        android:src="@drawable/remove"
+        android:tint="@color/red"
+        android:visibility="gone" />
+
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+        android:id="@+id/date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/comment"
+        android:layout_margin="10dp"
+        android:layout_toLeftOf="@id/remove"
+        android:gravity="right"
+        android:textSize="@dimen/text_VerySmall" />
+</RelativeLayout>

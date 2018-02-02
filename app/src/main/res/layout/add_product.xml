@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/shadow"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_margin="@dimen/margin_Medium"
+            android:layout_gravity="center"
+            android:src="@drawable/close"
+            android:tint="@color/black_8am2" />
+
+        <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_Small"
+            android:gravity="center"
+            android:text="Sell an item"
+            android:textColor="@color/black_8am2"
+            android:textSize="@dimen/text_Medium"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/productImages"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_Medium"
+                android:layout_margin="@dimen/margin_Medium" />
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:id="@+id/imageError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_Medium"
+                android:text="Please choose at least 1 image"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_Small"
+                android:visibility="gone" />
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/silver"
+                android:padding="@dimen/margin_Medium"
+                android:text="ITEM INFO" />
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_Medium"
+                android:background="@drawable/shadow"
+                android:gravity="left"
+                android:hint="Title,e.g. Converse shoes"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/black_8am2"
+                android:textSize="@dimen/text_Small" />
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:id="@+id/titleError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_Medium"
+                android:text="Please enter title for your product"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_Small"
+                android:visibility="gone" />
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_Medium"
+                android:background="@drawable/shadow"
+                android:gravity="left"
+                android:hint="L.E~20"
+                android:inputType="number"
+                android:textColor="@color/black_8am2"
+                android:textSize="@dimen/text_Small" />
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:id="@+id/priceError"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_Medium"
+                android:text="Please enter price for your product"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_Small"
+                android:visibility="gone" />
+
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText
+                android:id="@+id/description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_Medium"
+                android:background="@drawable/shadow"
+                android:gravity="left"
+                android:hint="Description"
+                android:textColor="@color/black_8am2"
+                android:textSize="@dimen/text_Small" />
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/silver"
+                android:padding="@dimen/margin_Medium"
+                android:text="DETAILS" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <com.example.pc.khaledwaleedshopping.Support.design.CustomeButton
+                    android:id="@+id/category"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_Medium"
+                    android:background="@drawable/button"
+                    android:backgroundTint="@color/red"
+                    android:text="Category"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+
+
+                <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                    android:id="@+id/category_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="You must choose category !"
+                    android:textColor="@color/red" />
+            </LinearLayout>
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_marginTop="@dimen/margin_Medium"
+                android:paddingLeft="@dimen/margin_Medium"
+                android:text="Brands"
+                android:textSize="@dimen/text_VerySmall" />
+
+            <Spinner
+                android:id="@+id/brands"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_Medium"
+                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_marginRight="@dimen/margin_Medium"
+                android:background="@drawable/shadow"
+                android:gravity="left" />
+
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:layout_width="wrap_content"
+                android:id="@+id/text_size"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_marginTop="@dimen/margin_Medium"
+                android:paddingLeft="@dimen/margin_Medium"
+                android:text="Size"
+                android:textSize="@dimen/text_VerySmall" />
+
+            <Spinner
+                android:id="@+id/size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_Medium"
+                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_marginRight="@dimen/margin_Medium"
+                android:background="@drawable/shadow"
+                android:gravity="left" />
+
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_marginTop="@dimen/margin_Medium"
+                android:paddingLeft="@dimen/margin_Medium"
+                android:text="First color"
+                android:textSize="@dimen/text_VerySmall" />
+
+            <Spinner
+                android:id="@+id/colors1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_Medium"
+                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_marginRight="@dimen/margin_Medium"
+                android:background="@drawable/shadow"
+                android:gravity="left" />
+
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_marginTop="@dimen/margin_Medium"
+                android:paddingLeft="@dimen/margin_Medium"
+                android:text="Second color"
+                android:textSize="@dimen/text_VerySmall" />
+
+            <Spinner
+                android:id="@+id/colors2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_Medium"
+                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_marginRight="@dimen/margin_Medium"
+                android:background="@drawable/shadow"
+                android:gravity="left" />
+
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_marginTop="@dimen/margin_Medium"
+                android:paddingLeft="@dimen/margin_Medium"
+                android:text="Condition"
+                android:textSize="@dimen/text_VerySmall" />
+
+            <Spinner
+                android:id="@+id/condition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_Medium"
+                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_marginRight="@dimen/margin_Medium"
+                android:background="@drawable/shadow"
+                android:gravity="left" />
+
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_Medium"
+                android:background="@drawable/shadow"
+                android:paddingLeft="@dimen/margin_Medium"
+                android:text="You must choose location"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_Small" />
+
+
+            <CheckBox
+                android:id="@+id/swap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_Medium"
+                android:background="@android:color/transparent"
+                android:button="@null"
+                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                android:gravity="left|center"
+                android:text="I'm interested in swapping this" />
+
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeButton
+                android:id="@+id/add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_Medium"
+                android:background="@color/blue"
+                android:text="add"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

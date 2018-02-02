@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dimen_Large"
+    android:layout_height="wrap_content"
+    android:background="@color/silver"
+    android:orientation="vertical">
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_Medium"
+        android:textColor="@color/red"
+        android:textSize="@dimen/text_Large" />
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeButton
+        android:id="@+id/button"
+        android:layout_width="@dimen/dimen_Small"
+        android:layout_height="@dimen/dimen_VerySmall"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_Medium"
+        android:background="@drawable/button"
+        android:backgroundTint="@color/red"
+        android:text="ok"
+        android:textColor="@color/white" />
+
+</LinearLayout>

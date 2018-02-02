@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/silver"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <ImageView
+            android:layout_width="@dimen/dimen_Large"
+            android:layout_height="@dimen/dimen_Large"
+            android:src="@drawable/logo" />
+
+        <com.example.pc.khaledwaleedshopping.Support.design.CustomeButton
+            android:id="@+id/facebook"
+            android:layout_width="@dimen/dimen_Large"
+            android:layout_height="@dimen/dimen_VerySmall"
+            android:layout_margin="@dimen/margin_Small"
+            android:background="@drawable/button"
+            android:backgroundTint="@color/blue"
+            android:text="Continue with Facebook"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+        <com.example.pc.khaledwaleedshopping.Support.design.CustomeButton
+            android:id="@+id/google"
+            android:layout_width="@dimen/dimen_Large"
+            android:layout_height="@dimen/dimen_VerySmall"
+            android:layout_margin="@dimen/margin_Small"
+            android:background="@drawable/button"
+            android:backgroundTint="@color/red"
+            android:text="Continue with Google"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="@dimen/dimen_Large"
+            android:layout_height="@dimen/dimen_VerySmall"
+            android:layout_margin="@dimen/margin_Small"
+            android:layout_weight=".1"
+            android:orientation="horizontal">
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeButton
+                android:id="@+id/signup"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:background="@android:color/transparent"
+                android:text="Sign Up"
+                android:textAllCaps="false"
+                android:textColor="@color/black_8am2" />
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeButton
+                android:id="@+id/signin"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight=".5"
+                android:background="@android:color/transparent"
+                android:text="Sign In"
+                android:textAllCaps="false"
+                android:textColor="@color/black_8am2" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/margin_Large"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
+</RelativeLayout>
