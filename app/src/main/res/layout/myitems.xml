@@ -32,7 +32,7 @@
             android:text="My items"
             android:textColor="@color/black_8am2"
             android:textSize="@dimen/text_Medium"
-            android:textStyle="bold" />
+            />
     </LinearLayout>
 
 <android.support.v7.widget.RecyclerView

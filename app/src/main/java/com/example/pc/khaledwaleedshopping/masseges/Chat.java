@@ -147,10 +147,11 @@ public class Chat extends Fragment {
 
     private void sendMsg(String kind) {
         {
-            if (!kind.equals("") || !msgText.getText().toString().equals("")) {
+            if (kind.equals(""))
+            kind = msgText.getText().toString();
+
+            if (!kind.equals("")) {
                 UrlData urlData = new UrlData();
-                if (!msgText.getText().toString().equals(""))
-                    kind = msgText.getText().toString();
                 urlData.add("message", kind);
                 urlData.add("id_recieve", clientId);
                 urlData.add("id_sent", userId);
@@ -170,7 +171,7 @@ public class Chat extends Fragment {
                 }, getActivity(), false).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, WebService.sendMsg, urlData.get());
 
             } else
-                Toast.makeText(getActivity(), "You cant send empty message!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "You can‘t send an empty message", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -277,7 +278,7 @@ public class Chat extends Fragment {
                     params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
                     holder.msg.setLayoutParams(params);
                     holder.msg.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
-                    holder.msg.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.blue)));
+                    holder.msg.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.mainColor)));
                     holder.date.setVisibility(View.VISIBLE);
                     holder.logo.setVisibility(View.VISIBLE);
                     holder.logo.setOnClickListener(new View.OnClickListener() {

@@ -37,7 +37,6 @@ import com.example.pc.khaledwaleedshopping.Support.image.UploadImage;
 import com.example.pc.khaledwaleedshopping.Support.webservice.GetData;
 import com.example.pc.khaledwaleedshopping.Support.webservice.UrlData;
 import com.example.pc.khaledwaleedshopping.Support.webservice.WebService;
-import com.example.pc.khaledwaleedshopping.products.home.Home;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -62,11 +61,11 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class AddProduct extends Fragment {
     RecyclerView productImages;
-    CustomeTextView priceError, titleError, imageError;
+    CustomeTextView priceError, titleError, imageError, brandsError;
     static CustomeTextView location;
     ImageAdapter imageAdapter;
     List<Uri> imageList;
-    Spinner colors1, colors2, brands, condition;
+    Spinner colors1, colors2, condition;
     protected static Spinner size;
     CheckBox swap;
     ImageView close;
@@ -76,8 +75,8 @@ public class AddProduct extends Fragment {
     CustomeEditText title, description, price;
     protected static JSONObject jsonObject = null;
     protected static int categoryNumber;
-    protected static String category1_id, category2_id, category3_id, city_id, government_id;
-    protected static CustomeTextView categoryTitle, textSize;
+    protected static String category1_id, category2_id, category3_id, city_id, government_id, brandId;
+    protected static CustomeTextView categoryTitle, textSize, brands;
     protected static String category2Title = "", category1Title = "", govTitle = "";
 
     @Override
@@ -92,23 +91,24 @@ public class AddProduct extends Fragment {
 
         categoryNumber = 0;
         category1_id = "-1";
-        city_id = "-1";
+        city_id = "";
         government_id = "-1";
+        brandId = "-1";
         category2_id = "11";
         category3_id = "2";
 
         priceError = (CustomeTextView) view.findViewById(R.id.priceError);
         titleError = (CustomeTextView) view.findViewById(R.id.titleError);
+        brandsError = (CustomeTextView) view.findViewById(R.id.brandsError);
         imageError = (CustomeTextView) view.findViewById(R.id.imageError);
         swap = (CheckBox) view.findViewById(R.id.swap);
         location = (CustomeTextView) view.findViewById(R.id.location);
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (government_id.equals("-1"))
-                    new Location(getActivity(), "gov", "-1");
-                else
-                    new Location(getActivity(), "city", government_id);
+                new Location(getActivity(), "gov", "-1");
+                /*else
+                    new Location(getActivity(), "city", government_id);*/
 
             }
         });
@@ -131,7 +131,7 @@ public class AddProduct extends Fragment {
             public void afterTextChanged(Editable editable) {
                 String str = price.getText().toString();
                 if (str.length() == 1 && len == 0) {
-                    price.setText("L.E~" + str);
+                    price.setText(str);
                     Selection.setSelection(price.getText(), price.getText().length());
                 } else if (str.length() == 1 && len == 2) price.setText("");
 
@@ -170,7 +170,7 @@ public class AddProduct extends Fragment {
 
         colors1 = (Spinner) view.findViewById(R.id.colors1);
         colors2 = (Spinner) view.findViewById(R.id.colors2);
-        brands = (Spinner) view.findViewById(R.id.brands);
+        brands = (CustomeTextView) view.findViewById(R.id.brands);
         size = (Spinner) view.findViewById(R.id.size);
         condition = (Spinner) view.findViewById(R.id.condition);
         swap = (CheckBox) view.findViewById(R.id.swap);
@@ -193,7 +193,6 @@ public class AddProduct extends Fragment {
                     jsonObject = new JSONObject(result);
                     colors1.setAdapter(new CustomeAdapter(getContext(), jsonObject.getJSONArray("color"), "color"));
                     colors2.setAdapter(new CustomeAdapter(getContext(), jsonObject.getJSONArray("color"), "color"));
-                    brands.setAdapter(new CustomeAdapter(getContext(), jsonObject.getJSONArray("brands"), "name"));
                     condition.setAdapter(new CustomeAdapter(getContext(), jsonObject.getJSONArray("condition"), "title"));
                     size.setVisibility(View.GONE);
                     textSize.setVisibility(View.GONE);
@@ -201,6 +200,12 @@ public class AddProduct extends Fragment {
                         @Override
                         public void onClick(View view) {
                             new Category(getActivity());
+                        }
+                    });
+                    brands.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            new Brands(getActivity());
                         }
                     });
                     add.setOnClickListener(new View.OnClickListener() {
@@ -236,7 +241,7 @@ public class AddProduct extends Fragment {
                             urlData.add("id_category1", category1_id);
                             urlData.add("id_category2", category2_id);
                             urlData.add("id_category3", category3_id);
-                            urlData.add("price", price.getText().toString().replace("L.E~", ""));
+                            urlData.add("price", price.getText().toString().replace(" L.E", ""));
 
                             if (swap.isChecked())
                                 urlData.add("swap", "1");
@@ -250,8 +255,7 @@ public class AddProduct extends Fragment {
                                 urlData.add("img" + i, " ");
                             }
 
-                            CustomeTextView brandsChooseText = (CustomeTextView) brands.getSelectedView();
-                            urlData.add("id_brand", brandsChooseText.getTag().toString());
+                            urlData.add("id_brand", brandId);
 
                             CustomeTextView sizeChooseText = (CustomeTextView) size.getSelectedView();
                             if (size.getVisibility() == View.GONE) {
@@ -278,11 +282,10 @@ public class AddProduct extends Fragment {
                                     try {
                                         FragmentManager fm = getActivity().getSupportFragmentManager();
                                         FragmentTransaction ft = fm.beginTransaction();
-                                        fragmentHome = new Home();
-                                        Home.downScroll = -1;
+                                        fragmentHome = new com.example.pc.khaledwaleedshopping.products.home.Home();
+                                        fragmentHome.downScroll = -1;
                                         ft.replace(R.id.activity_main_content_fragment3, fragmentHome);
                                         ft.commit();
-                                        fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -302,6 +305,7 @@ public class AddProduct extends Fragment {
         priceError.setVisibility(View.GONE);
         titleError.setVisibility(View.GONE);
         imageError.setVisibility(View.GONE);
+        brandsError.setVisibility(View.GONE);
         if (imageList.size() == 1) {
             b = false;
             imageError.setVisibility(View.VISIBLE);
@@ -315,12 +319,18 @@ public class AddProduct extends Fragment {
             priceError.setVisibility(View.VISIBLE);
         }
 
-        if (categoryTitle.getText().toString().equals("You must choose category !")) {
+        if (categoryTitle.getText().toString().equals("Please choose a category")) {
             b = false;
         }
 
         if (government_id.equals("-1")) {
             b = false;
+        }
+
+        if (brandId.equals("-1")) {
+            b = false;
+            brandsError.setVisibility(View.VISIBLE);
+
         }
         return b;
     }

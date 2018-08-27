@@ -110,10 +110,10 @@ public class FollowList extends Fragment {
                 if (followRow.getString("isFollow").equals("false")) {
 
                     holder.followButton.setTag("not follow");
-                    holder.followButton.setText("follow");
+                    holder.followButton.setText("Follow");
                 } else {
                     holder.followButton.setTag("follow");
-                    holder.followButton.setText("following");
+                    holder.followButton.setText("Following");
                 }
                 holder.followButton.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -128,14 +128,14 @@ public class FollowList extends Fragment {
                                 urlDataFollow.add("state", "remove");
 
                                 holder.followers.setText((Integer.parseInt(followRow.getString("followers"))) + "");
-                                holder.followButton.setText("follow");
+                                holder.followButton.setText("Follow");
                             } else {
                                 holder.followButton.setTag("follow");
                                 urlDataFollow.add("state", "add");
 
                                 holder.followers.setText((Integer.parseInt(followRow.getString("followers"))) + "");
                                 Toast.makeText(getActivity(), "You are now follow " + holder.clientName.getText().toString(), Toast.LENGTH_SHORT).show();
-                                holder.followButton.setText("following");
+                                holder.followButton.setText("Following");
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

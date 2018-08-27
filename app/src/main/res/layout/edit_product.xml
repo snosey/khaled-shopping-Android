@@ -28,7 +28,7 @@
             android:text="Sell an item"
             android:textColor="@color/black_8am2"
             android:textSize="@dimen/text_Medium"
-            android:textStyle="bold" />
+            />
     </LinearLayout>
 
     <ScrollView
@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_Medium"
-                android:text="Please choose at least 1 image"
+                android:text="Please upload a picture"
                 android:textColor="@color/red"
                 android:textSize="@dimen/text_Small"
                 android:visibility="gone" />
@@ -93,7 +93,7 @@
                 android:layout_margin="@dimen/margin_Medium"
                 android:background="@drawable/shadow"
                 android:gravity="left"
-                android:hint="L.E~20"
+                android:hint="20 L.E"
                 android:inputType="number"
                 android:textColor="@color/black_8am2"
                 android:textSize="@dimen/text_Small" />
@@ -116,7 +116,7 @@
                 android:layout_margin="@dimen/margin_Medium"
                 android:background="@drawable/shadow"
                 android:gravity="left"
-                android:hint="Description"
+                android:hint="Description, e.g. as new, slighty worn, no flaws"
                 android:textColor="@color/black_8am2"
                 android:textSize="@dimen/text_Small" />
 
@@ -139,7 +139,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_Medium"
                     android:background="@drawable/button"
-                    android:backgroundTint="@color/red"
+                    android:backgroundTint="@color/colorPrimary"
                     android:text="Category"
                     android:textAllCaps="false"
                     android:textColor="@color/white" />
@@ -152,59 +152,71 @@
                     android:layout_gravity="center"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="You didn't choose category yet."
+                    android:text="Please choose a category"
                     android:textColor="@color/red" />
             </LinearLayout>
 
-            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_Medium"
-                android:layout_marginTop="@dimen/margin_Medium"
-                android:paddingLeft="@dimen/margin_Medium"
-                android:text="Brands"
-                android:textSize="@dimen/text_VerySmall" />
-
-            <Spinner
-                android:id="@+id/brands"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/margin_Medium"
-                android:layout_marginLeft="@dimen/margin_Medium"
-                android:layout_marginRight="@dimen/margin_Medium"
-                android:background="@drawable/shadow"
-                android:gravity="left" />
+                android:layout_marginTop="@dimen/margin_Medium"
+                android:orientation="horizontal">
 
+
+                <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_Medium"
+                    android:paddingLeft="@dimen/margin_Medium"
+                    android:text="Brand"
+                    android:textSize="@dimen/text_VerySmall"
+                    />
+
+                <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                    android:id="@+id/brands"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/margin_Medium"
+                    android:layout_marginLeft="@dimen/margin_Medium"
+                    android:layout_marginRight="@dimen/margin_Medium"
+                    android:drawableEnd="@drawable/next"
+                    android:gravity="right"
+                    android:padding="@dimen/margin_Medium"
+                    android:text="Click here to change the brand" />
+
+
+            </LinearLayout>
 
             <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:id="@+id/brandsError"
                 android:layout_width="wrap_content"
-                android:id="@+id/text_size"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_Medium"
-                android:layout_marginTop="@dimen/margin_Medium"
-                android:paddingLeft="@dimen/margin_Medium"
-                android:text="Size"
-                android:textSize="@dimen/text_VerySmall" />
+                android:layout_margin="@dimen/margin_Medium"
+                android:text="Please choose brand for your product"
+                android:textColor="@color/red"
+                android:textSize="@dimen/text_Small"
+                android:visibility="gone" />
 
-            <Spinner
-                android:id="@+id/size"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_Medium"
-                android:layout_marginLeft="@dimen/margin_Medium"
-                android:layout_marginRight="@dimen/margin_Medium"
-                android:background="@drawable/shadow"
-                android:gravity="left" />
-
-
-            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_gravity="center"
                 android:layout_marginTop="@dimen/margin_Medium"
-                android:paddingLeft="@dimen/margin_Medium"
-                android:text="First color"
-                android:textSize="@dimen/text_VerySmall" />
+                android:orientation="horizontal">
+
+                <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_Medium"
+                    android:paddingLeft="@dimen/margin_Medium"
+                    android:text="First color"
+                    android:textSize="@dimen/text_VerySmall"
+                    />
+
+
+            </LinearLayout>
 
             <Spinner
                 android:id="@+id/colors1"
@@ -213,18 +225,25 @@
                 android:layout_marginBottom="@dimen/margin_Medium"
                 android:layout_marginLeft="@dimen/margin_Medium"
                 android:layout_marginRight="@dimen/margin_Medium"
-                android:background="@drawable/shadow"
                 android:gravity="left" />
 
-
-            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_gravity="center"
                 android:layout_marginTop="@dimen/margin_Medium"
-                android:paddingLeft="@dimen/margin_Medium"
-                android:text="Second color"
-                android:textSize="@dimen/text_VerySmall" />
+                android:orientation="horizontal">
+
+                <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_Medium"
+                    android:paddingLeft="@dimen/margin_Medium"
+                    android:text="Second color"
+                    android:textSize="@dimen/text_VerySmall"
+                    />
+
+            </LinearLayout>
 
             <Spinner
                 android:id="@+id/colors2"
@@ -233,18 +252,56 @@
                 android:layout_marginBottom="@dimen/margin_Medium"
                 android:layout_marginLeft="@dimen/margin_Medium"
                 android:layout_marginRight="@dimen/margin_Medium"
-                android:background="@drawable/shadow"
                 android:gravity="left" />
 
 
-            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/sizeLL"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_gravity="center"
                 android:layout_marginTop="@dimen/margin_Medium"
-                android:paddingLeft="@dimen/margin_Medium"
-                android:text="Condition"
-                android:textSize="@dimen/text_VerySmall" />
+                android:orientation="horizontal">
+
+                <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                    android:id="@+id/text_size"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_Medium"
+                    android:paddingLeft="@dimen/margin_Medium"
+                    android:text="Size"
+                    android:textSize="@dimen/text_VerySmall"
+                    />
+
+            </LinearLayout>
+
+            <Spinner
+                android:id="@+id/size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_Medium"
+                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_marginRight="@dimen/margin_Medium"
+                android:gravity="left" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin_Medium"
+                android:orientation="horizontal">
+
+                <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_Medium"
+                    android:paddingLeft="@dimen/margin_Medium"
+                    android:text="Condition"
+                    android:textSize="@dimen/text_VerySmall"
+                    />
+
+
+            </LinearLayout>
 
             <Spinner
                 android:id="@+id/condition"
@@ -253,18 +310,19 @@
                 android:layout_marginBottom="@dimen/margin_Medium"
                 android:layout_marginLeft="@dimen/margin_Medium"
                 android:layout_marginRight="@dimen/margin_Medium"
-                android:background="@drawable/shadow"
                 android:gravity="left" />
-
 
             <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
                 android:id="@+id/location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/margin_Medium"
                 android:background="@drawable/shadow"
-                android:paddingLeft="@dimen/margin_Medium"
-                android:text="Choose your location"
+                android:gravity="center"
+                android:paddingBottom="@dimen/margin_Medium"
+                android:paddingLeft="20dp"
+                android:paddingRight="@dimen/margin_Medium"
+                android:paddingTop="@dimen/margin_Medium"
+                android:text="Please choose a location"
                 android:textColor="@color/red"
                 android:textSize="@dimen/text_Small" />
 
@@ -280,15 +338,14 @@
                 android:gravity="left|center"
                 android:text="I'm interested in swapping this" />
 
-
             <com.example.pc.khaledwaleedshopping.Support.design.CustomeButton
                 android:id="@+id/edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/margin_Medium"
-                android:background="@color/blue"
-                android:text="edit"
+                android:background="@color/mainColor"
+                android:text="Edit"
                 android:textColor="@color/white" />
 
             <com.example.pc.khaledwaleedshopping.Support.design.CustomeButton
@@ -298,7 +355,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/margin_Medium"
                 android:background="@color/red"
-                android:text="delete"
+                android:text="Delete"
                 android:textColor="@color/white" />
 
 

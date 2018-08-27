@@ -30,6 +30,7 @@ import static com.example.pc.khaledwaleedshopping.products.editproduct.EditProdu
  */
 
 public class Category extends Dialog {
+    private final int sizeCountInDB = 9;
     private RecyclerView categoryRV;
     FragmentActivity activity;
     CustomeTextView title;
@@ -81,14 +82,14 @@ public class Category extends Dialog {
                     EditProduct.size.setVisibility(View.VISIBLE);
                     textSize.setVisibility(View.VISIBLE);
                     JSONArray jsonArray = new JSONArray();
-                    for (int i = 8; i < jsonObject.getJSONArray("size").length(); i++)
+                    for (int i = sizeCountInDB; i < jsonObject.getJSONArray("size").length(); i++)
                         jsonArray.put(jsonObject.getJSONArray("size").get(i));
                     EditProduct.size.setAdapter(new com.example.pc.khaledwaleedshopping.products.editproduct.CustomeAdapter(getContext(), jsonArray, "name", "size"));
                 } else {
                     EditProduct.size.setVisibility(View.VISIBLE);
                     textSize.setVisibility(View.VISIBLE);
                     JSONArray jsonArray = new JSONArray();
-                    for (int i = 0; i < 8; i++)
+                    for (int i = 0; i < sizeCountInDB; i++)
                         jsonArray.put(jsonObject.getJSONArray("size").get(i));
                     EditProduct.size.setAdapter(new com.example.pc.khaledwaleedshopping.products.editproduct.CustomeAdapter(getContext(), jsonArray, "name", "size"));
                 }
@@ -122,7 +123,7 @@ public class Category extends Dialog {
                     EditProduct.size.setVisibility(View.VISIBLE);
                     textSize.setVisibility(View.VISIBLE);
                     JSONArray jsonArray = new JSONArray();
-                    for (int i = 8; i < EditProduct.jsonObject.getJSONArray("size").length(); i++)
+                    for (int i = sizeCountInDB; i < EditProduct.jsonObject.getJSONArray("size").length(); i++)
                         jsonArray.put(EditProduct.jsonObject.getJSONArray("size").get(i));
                     EditProduct.size.setAdapter(new com.example.pc.khaledwaleedshopping.products.editproduct.CustomeAdapter(getContext(), jsonArray, "name", "size"));
                 }

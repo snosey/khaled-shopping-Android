@@ -29,8 +29,7 @@
             android:gravity="center"
             android:text="Filter"
             android:textColor="@color/black_8am2"
-            android:textSize="@dimen/text_Medium"
-            android:textStyle="bold" />
+            android:textSize="@dimen/text_Medium" />
     </LinearLayout>
 
     <ScrollView
@@ -49,7 +48,7 @@
                 android:layout_marginLeft="@dimen/margin_Medium"
                 android:layout_marginTop="@dimen/margin_Medium"
                 android:paddingLeft="@dimen/margin_Medium"
-                android:text="price"
+                android:text="Price"
                 android:textSize="@dimen/text_VerySmall" />
 
             <LinearLayout
@@ -74,15 +73,15 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_Medium"
                     android:layout_weight=".8"
-                    app:bar_color="@android:color/darker_gray"
-                    app:bar_highlight_color="@color/blue"
-                    app:gap="50"
-                    app:left_thumb_color="@color/blue"
-                    app:left_thumb_color_pressed="#030B47"
-                    app:max_value="1000"
+                    app:bar_color="@color/secondColor"
+                    app:bar_highlight_color="@color/mainColor"
+                    app:gap="100"
+                    app:left_thumb_color="@color/whiteDark"
+                    app:left_thumb_color_pressed="@color/white"
+                    app:max_value="2100"
                     app:min_value="0"
-                    app:right_thumb_color="@color/blue"
-                    app:right_thumb_color_pressed="#030B47"
+                    app:right_thumb_color="@color/whiteDark"
+                    app:right_thumb_color_pressed="@color/white"
                     app:steps="50" />
 
                 <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
@@ -115,7 +114,8 @@
                     android:paddingRight="@dimen/margin_VerySmall"
                     android:text="Category"
                     android:textAllCaps="false"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_VerySmall" />
 
 
                 <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
@@ -138,15 +138,17 @@
                 android:text="Brands"
                 android:textSize="@dimen/text_VerySmall" />
 
-            <Spinner
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
                 android:id="@+id/brands"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_Medium"
                 android:layout_marginLeft="@dimen/margin_Medium"
                 android:layout_marginRight="@dimen/margin_Medium"
-                android:background="@drawable/shadow"
-                android:gravity="left" />
+                android:drawableEnd="@drawable/next"
+                android:gravity="start"
+                android:padding="@dimen/margin_Medium"
+                android:text="Click here to choose a brand" />
 
 
             <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
@@ -229,6 +231,39 @@
                 android:background="@drawable/shadow"
                 android:gravity="left" />
 
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_marginTop="@dimen/margin_Medium"
+                android:paddingLeft="@dimen/margin_Medium"
+                android:text="Government"
+                android:textSize="@dimen/text_VerySmall" />
+
+            <Spinner
+                android:id="@+id/government"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_Medium"
+                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_marginRight="@dimen/margin_Medium"
+                android:background="@drawable/shadow"
+                android:gravity="left" />
+
+            <CheckBox
+                android:id="@+id/swap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_Medium"
+                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_marginRight="@dimen/margin_Medium"
+                android:background="@android:color/transparent"
+                android:button="@null"
+                android:drawableRight="?android:attr/listChoiceIndicatorMultiple"
+                android:drawableTint="@color/black_8am2"
+                android:gravity="left|center"
+                android:paddingLeft="@dimen/margin_Medium"
+                android:text="Swapping" />
 
             <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
                 android:id="@+id/location"
@@ -239,7 +274,8 @@
                 android:paddingLeft="@dimen/margin_Medium"
                 android:text="Whole country"
                 android:textColor="@color/red"
-                android:textSize="@dimen/text_Small" />
+                android:textSize="@dimen/text_Small"
+                android:visibility="gone" />
 
 
             <com.example.pc.khaledwaleedshopping.Support.design.CustomeButton
@@ -248,8 +284,18 @@
                 android:layout_height="@dimen/dimen_VerySmall"
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/margin_Medium"
-                android:background="@color/blue"
-                android:text="filter"
+                android:background="@color/mainColor"
+                android:text="Filter"
+                android:textColor="@color/white" />
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeButton
+                android:id="@+id/defaultFilter"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_VerySmall"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_Medium"
+                android:background="@color/mainColor"
+                android:text="Clear"
                 android:textColor="@color/white" />
 
 

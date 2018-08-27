@@ -52,7 +52,7 @@ public class Profile extends android.support.v4.app.Fragment {
                         content.setText(object.getString("content"));
                         title1.setText(object.getString("title"));
                         title2.setText(object.getString("title"));
-                        comments.setText("comments ( " + object.getString("countComments") + " )");
+                        comments.setText("Comments ( " + object.getString("countComments") + " )");
                         comments.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {

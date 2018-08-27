@@ -31,9 +31,9 @@
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
-            android:textColor="@color/blue"
+            android:textColor="@color/mainColor"
             android:textSize="@dimen/text_Medium"
-            android:textStyle="bold" />
+            />
 
         <ImageView
             android:id="@+id/productImage"

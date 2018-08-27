@@ -1,9 +1,9 @@
 package com.example.pc.khaledwaleedshopping.products.home;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,13 +11,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Button;
 
 import com.example.pc.khaledwaleedshopping.MainActivity;
 import com.example.pc.khaledwaleedshopping.R;
@@ -30,8 +32,13 @@ import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -54,10 +61,11 @@ public class Home extends Fragment {
     private SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     Set<String> searchSet;
-    ImageView filter;
+    Button filter, sort;
     FullFilter fullFilter;
     public static String kind = "";
     private boolean fullFilterActive = false;
+    PopupMenu popup;
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
@@ -72,14 +80,39 @@ public class Home extends Fragment {
         kind = "";
 
         refreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_layout);
-        refreshLayout.setColorSchemeColors(Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW);
+        refreshLayout.setColorSchemeColors(getResources().getColor(R.color.mainColor));
 
-        filter = (ImageView) view.findViewById(R.id.filter);
+        popup = new PopupMenu(getActivity(), view.findViewById(R.id.sort));
+        popup.getMenuInflater().inflate(R.menu.sort, popup.getMenu());
+
+        filter = (Button) view.findViewById(R.id.filter);
+        sort = (Button) view.findViewById(R.id.sort);
+        sort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        item.setChecked(true);
+                        if (item.getItemId() == R.id.high) {
+                            sortItems("price", true);
+                        } else if (item.getItemId() == R.id.low) {
+                            sortItems("price", false);
+                        } else {
+                            sortItems("id", true);
+                        }
+                        return false;
+                    }
+                });
+                popup.show();
+            }
+        });
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (!fullFilterActive)
                     fullFilter = new FullFilter(getActivity());
+
                 fullFilterActive = true;
                 fullFilter.show();
                 fullFilter.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -93,6 +126,14 @@ public class Home extends Fragment {
                         downScroll = 0;
                         loadingProducts(0, kind);
 
+                    }
+                });
+                fullFilter.defaultFilter.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        fullFilter.dismiss();
+                        fullFilterActive = false;
+                        filter.callOnClick();
                     }
                 });
             }
@@ -148,11 +189,9 @@ public class Home extends Fragment {
         productRV = (RecyclerView) view.findViewById(R.id.productList);
         final GridLayoutManager mLayoutManager;
         DisplayMetrics displayMetrics = getActivity().getResources().getDisplayMetrics();
-        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        int noOfColumns = (int) (dpWidth / 180);
-        mLayoutManager = new GridLayoutManager(getActivity(), noOfColumns);
+        mLayoutManager = new GridLayoutManager(getActivity(), 2);
         productRV.setLayoutManager(mLayoutManager);
-        if (downScroll == -1) {
+        if (downScroll == -1 || downScroll == -2) {
             jsonObjects = new JSONArray();
             loadingProducts(0, kind);
             current = 0;
@@ -188,14 +227,17 @@ public class Home extends Fragment {
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                jsonObjects = new JSONArray();
+                productListAdapter.notifyDataSetChanged();
                 loadingProducts(0, kind);
             }
         });
         return view;
     }
 
-    private void loadingProducts(final int i, String kind) {
+    private void loadingProducts(final int i, final String kind) {
         try {
+
             if (refreshLayout.isRefreshing()) {
                 refreshLayout.setRefreshing(false);
             }
@@ -216,18 +258,26 @@ public class Home extends Fragment {
                             loading = false;
                         else {
                             for (int postion = 0; postion < jsonArray.length(); postion++) {
-                                if (i == 0 && jsonObjects.length() == postion) {
+                                if (i == 0 && jsonObjects.length() == postion && !jsonObjects.toString().contains(jsonArray.getJSONObject(postion).toString())) {
                                     jsonObjects.put(jsonArray.getJSONObject(postion));
                                 } else {
-                                    if (i == 0 && jsonObjects.length() > postion &&!
-                                            jsonArray.getJSONObject(postion).getString("id").equals(jsonObjects.getJSONObject(postion).getString("id"))) {
+                                    if (i == 0 && jsonObjects.length() > postion && !jsonObjects.toString().contains(jsonArray.getJSONObject(postion).toString()) &&
+                                            !jsonArray.getJSONObject(postion).getString("id").equals(jsonObjects.getJSONObject(postion).getString("id"))) {
                                         Log.e("Loading:", " New product!");
-                                        jsonObjects.put(postion,jsonArray.getJSONObject(postion));
-                                    } else
+                                        jsonObjects.put(postion, jsonArray.getJSONObject(postion));
+                                    } else if (!jsonObjects.toString().contains(jsonArray.getJSONObject(postion).toString()))
                                         jsonObjects.put(jsonArray.getJSONObject(postion));
                                 }
                             }
                             productListAdapter.notifyDataSetChanged();
+                        }
+                        if (jsonObjects.length() == 0) {
+                            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+                            alertDialogBuilder.setMessage("Oops! We didn‘t find what you‘re looking for").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    fullFilter.show();
+                                }
+                            }).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -238,6 +288,49 @@ public class Home extends Fragment {
             e.printStackTrace();
         }
 
+    }
+
+
+    void sortItems(final String type, boolean reverse) {
+        List<JSONObject> tempJsonObjects = new ArrayList<>();
+        for (int i = 0; i < jsonObjects.length(); i++) {
+            try {
+                tempJsonObjects.add(jsonObjects.getJSONObject(i));
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        Collections.sort(tempJsonObjects, new Comparator<JSONObject>() {
+            @Override
+            public int compare(JSONObject lhs, JSONObject rhs) {
+                // TODO Auto-generated method stub
+
+                try {
+                    int bool = 0;
+                    if (Integer.parseInt(rhs.getString(type)) > Integer.parseInt(lhs.getString(type)))
+                        bool = -1;
+                    else if (Integer.parseInt(rhs.getString(type)) < Integer.parseInt(lhs.getString(type)))
+                        bool = 1;
+
+                    return bool;
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                    return 0;
+                }
+            }
+        });
+        if (reverse)
+            Collections.reverse(tempJsonObjects);
+
+        jsonObjects = new JSONArray();
+        for (int i = 0; i < tempJsonObjects.size(); i++) {
+            jsonObjects.put(tempJsonObjects.get(i));
+        }
+        productListAdapter = new ProductListAdapter(jsonObjects, getActivity(), "Inbox");
+        productRV.setAdapter(productListAdapter);
     }
 
 }

@@ -18,7 +18,7 @@ public class CompressImage {
             // BitmapFactory options to downsize the image
             BitmapFactory.Options o = new BitmapFactory.Options();
             o.inJustDecodeBounds = true;
-            o.inSampleSize = 6;
+            o.inSampleSize = 4;
             // factor of downsizing the image
 
             FileInputStream inputStream = new FileInputStream(file);
@@ -27,7 +27,7 @@ public class CompressImage {
             inputStream.close();
 
             // The new size we want to scale to
-            final int REQUIRED_SIZE = 75;
+            final int REQUIRED_SIZE = 99;
 
             // Find the correct scale value. It should be the power of 2.
             int scale = 1;

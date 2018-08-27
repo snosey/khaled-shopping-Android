@@ -14,7 +14,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.pc.khaledwaleedshopping.LoginActivity;
 import com.example.pc.khaledwaleedshopping.MainActivity;
@@ -44,6 +43,7 @@ import in.myinnos.awesomeimagepicker.activities.AlbumSelectActivity;
 import in.myinnos.awesomeimagepicker.helpers.ConstantsCustomGallery;
 
 import static android.app.Activity.RESULT_OK;
+import static com.example.pc.khaledwaleedshopping.MainActivity.fragmentHome;
 
 /**
  * Created by pc on 10/28/2017.
@@ -218,25 +218,17 @@ public class MyProfile extends Fragment {
 
                                 try {
 
-                                    Toast.makeText(getContext(), "DONE!", Toast.LENGTH_SHORT).show();
-                                    FragmentManager fm = getActivity().getSupportFragmentManager();
-                                    FragmentTransaction ft = fm.beginTransaction();
-                                    MyProfile favourites = new MyProfile();
-                                    ft.replace(R.id.activity_main_content_fragment3, favourites);
-                                    ft.commit();
-                                    /*
-                                    SharedPreferences sharedPreferences = getActivity().getSharedPreferences("login", MODE_PRIVATE);
-                                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                                    editor.putString("password", password.getText().toString());
-                                    editor.commit();
-                                    FragmentManager fm = getActivity().getSupportFragmentManager();
-                                    FragmentTransaction ft = fm.beginTransaction();
-                                    MainActivity.fragmentHome = new Home();
-                                    Home.downScroll = -1;
-                                    ft.replace(R.id.activity_main_content_fragment3, fragmentHome);
-                                    ft.commit();
-                                    fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                                    */
+                                    try {
+                                        FragmentManager fm = getActivity().getSupportFragmentManager();
+                                        FragmentTransaction ft = fm.beginTransaction();
+                                        fragmentHome = new com.example.pc.khaledwaleedshopping.products.home.Home();
+                                        fragmentHome.downScroll = -1;
+                                        ft.replace(R.id.activity_main_content_fragment3, fragmentHome);
+                                        ft.commit();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
@@ -279,17 +271,17 @@ public class MyProfile extends Fragment {
 
     private void cleanError() {
         passwordError.setText("password");
-        passwordError.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+        passwordError.setTextColor(ContextCompat.getColor(getContext(), R.color.mainColor));
 
 
         nameError.setText("Your name");
-        nameError.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+        nameError.setTextColor(ContextCompat.getColor(getContext(), R.color.mainColor));
 
         emailError.setText("Email address");
-        emailError.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+        emailError.setTextColor(ContextCompat.getColor(getContext(), R.color.mainColor));
 
         phoneError.setText("phone");
-        phoneError.setTextColor(ContextCompat.getColor(getContext(), R.color.blue));
+        phoneError.setTextColor(ContextCompat.getColor(getContext(), R.color.mainColor));
 
     }
 

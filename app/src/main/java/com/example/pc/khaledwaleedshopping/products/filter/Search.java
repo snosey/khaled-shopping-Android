@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +38,7 @@ public class Search extends Fragment {
     private static int pastVisiblesItems, visibleItemCount, totalItemCount, current;
     private boolean loading = true;
     RecyclerView productRV;
-    private static int downScroll = -1;
+    private int downScroll = -1;
     static JSONArray jsonObjects;
     ProductListAdapter productListAdapter;
     private static MaterialSearchView searchView;
@@ -94,10 +93,7 @@ public class Search extends Fragment {
         title.setText(titleQuery);
         productRV = (RecyclerView) view.findViewById(R.id.productList);
         final GridLayoutManager mLayoutManager;
-        DisplayMetrics displayMetrics = getActivity().getResources().getDisplayMetrics();
-        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        int noOfColumns = (int) (dpWidth / 180);
-        mLayoutManager = new GridLayoutManager(getActivity(), noOfColumns);
+        mLayoutManager = new GridLayoutManager(getActivity(), 2);
         productRV.setLayoutManager(mLayoutManager);
         if (downScroll == -1) {
             jsonObjects = new JSONArray();

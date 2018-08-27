@@ -60,9 +60,10 @@ class CustomeAdapter extends BaseAdapter {
                 try {
                     myImage.setTint(Color.parseColor(jsonArray.getJSONObject(i).getString("colorCode")));
                 } catch (Exception e) {
-                   }
+                }
+                //Drawable next = context.getResources().getDrawable(R.drawable.next);
                 textView.setCompoundDrawablePadding(15);
-                textView.setCompoundDrawablesWithIntrinsicBounds(myImage, null, null, null);
+                textView.setCompoundDrawablesWithIntrinsicBounds(null, null, myImage, null);
             }
             textView.setText(jsonArray.getJSONObject(i).getString(colName));
             textView.setTag(jsonArray.getJSONObject(i).getString("id"));

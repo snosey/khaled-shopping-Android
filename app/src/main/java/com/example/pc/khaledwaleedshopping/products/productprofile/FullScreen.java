@@ -8,7 +8,6 @@ import com.daimajia.slider.library.SliderLayout;
 import com.daimajia.slider.library.SliderTypes.BaseSliderView;
 import com.example.pc.khaledwaleedshopping.R;
 import com.example.pc.khaledwaleedshopping.Support.design.CustomSliderFullScreenView;
-import com.example.pc.khaledwaleedshopping.Support.design.CustomSliderFullScreenView;
 import com.example.pc.khaledwaleedshopping.Support.webservice.WebService;
 
 import org.json.JSONException;
@@ -27,6 +26,7 @@ public class FullScreen extends Dialog {
         SliderLayout productImages;
         productImages = (SliderLayout) this.findViewById(R.id.productImages);
         productImages.stopAutoCycle();
+
         //images 1
         if (!productDetails.getString("img1").equals(" ")) {
             CustomSliderFullScreenView textSliderView = new CustomSliderFullScreenView(activity);

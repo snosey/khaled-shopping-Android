@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="160dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_Small"
+    android:layout_margin="@dimen/margin_VerySmall"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
@@ -13,75 +14,121 @@
 
         <ImageView
             android:id="@+id/usericon"
-            android:layout_width="@dimen/margin_Large"
+            android:layout_width="0dp"
             android:layout_height="@dimen/margin_Large"
             android:layout_margin="@dimen/margin_Small"
+            android:layout_weight=".2"
             android:src="@drawable/profile" />
 
         <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
             android:id="@+id/username"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="@dimen/margin_Small"
+            android:layout_weight=".6"
             android:ellipsize="end"
+            android:gravity="center"
             android:maxLines="1"
             android:text="username"
             android:textColor="@color/black_fat7"
             android:textSize="@dimen/text_VerySmall" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".2"
+            android:padding="@dimen/margin_Small"
+            android:src="@drawable/verified"
+            android:visibility="gone" />
+
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imgProduct"
-        android:background="@android:color/black"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:src="@drawable/loading" />
-
     <RelativeLayout
-        android:id="@+id/right"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_VerySmall"
-        android:layout_marginLeft="@dimen/margin_Medium"
-        android:layout_marginRight="@dimen/margin_Medium"
-        android:layout_marginTop="@dimen/margin_Medium">
+        android:layout_height="match_parent">
 
-        <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+        <ImageView
+            android:id="@+id/imgProduct"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_very_Medium"
+            android:background="@color/black_8am2"
+            android:src="@drawable/loading" />
+
+        <RelativeLayout
+            android:id="@+id/right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imgProduct"
+            android:layout_marginBottom="@dimen/margin_VerySmall"
+            android:layout_marginLeft="@dimen/margin_Medium"
+            android:layout_marginRight="@dimen/margin_Medium"
+            android:layout_marginTop="@dimen/margin_Medium">
+
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:drawablePadding="10dp"
+                android:text="25 L.E"
+                android:textColor="@color/black_8am2"
+                android:textSize="@dimen/text_Small" />
+
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:id="@+id/brand"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="@dimen/margin_Medium"
+                android:layout_toStartOf="@id/price"
+                android:layout_height="wrap_content"
+                android:text="Nike"
+                android:textSize="@dimen/text_VerySmall" />
+
+            <ImageView
+                android:id="@+id/swap"
+                android:layout_width="@dimen/margin_Large"
+                android:layout_height="@dimen/margin_Large"
+                android:layout_alignParentEnd="true"
+                android:layout_below="@id/price"
+                android:layout_marginBottom="@dimen/margin_Small"
+                android:layout_marginEnd="@dimen/margin_Small"
+                android:layout_marginLeft="@dimen/margin_Small"
+                android:layout_marginRight="@dimen/margin_Small"
+                android:layout_marginStart="@dimen/margin_Small"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/rotate"
+                android:visibility="visible" />
+
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:id="@+id/size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/brand"
+                android:layout_marginTop="@dimen/margin_Medium"
+                android:layout_toStartOf="@id/swap"
+                android:layout_marginEnd="@dimen/margin_Small"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="10/xl"
+                android:textSize="@dimen/text_VerySmall" />
+
+
+        </RelativeLayout>
+
+
+        <ImageView
             android:id="@+id/love"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:drawableLeft="@drawable/love"
-            android:drawablePadding="5dp"
-            android:text="25"
+            android:layout_width="@dimen/dimen_VerySmall"
+            android:layout_height="@dimen/dimen_VeryVerySmall"
+            android:layout_above="@id/right"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="-15dp"
+            android:src="@drawable/not_love"
             android:textSize="@dimen/text_VerySmall" />
-
-        <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
-            android:id="@+id/price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:drawablePadding="10dp"
-            android:text="L.E~25"
-            android:textColor="@color/black_8am2"
-            android:textSize="@dimen/text_Small" />
 
     </RelativeLayout>
 
-    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
-        android:id="@+id/brand"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_Medium"
-        android:text="Nike"
-        android:textSize="@dimen/text_VerySmall" />
-
-    <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
-        android:id="@+id/size"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/margin_Medium"
-        android:text="10/xl"
-        android:textSize="@dimen/text_VerySmall" />
 </LinearLayout>

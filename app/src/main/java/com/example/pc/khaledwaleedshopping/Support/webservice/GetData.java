@@ -1,8 +1,7 @@
 package com.example.pc.khaledwaleedshopping.Support.webservice;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.DialogInterface;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +16,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 
 /**
  * Created by ahmed on 4/23/2017.
@@ -35,7 +35,7 @@ public class GetData extends AsyncTask<String, Void, String> {
         super.onPreExecute();
         dialog = activity.findViewById(R.id.progress);
         try {
-            if (dialog.getVisibility()==View.GONE && dialogShown) {
+            if (dialog.getVisibility() == View.GONE && dialogShown) {
                 dialog.setVisibility(View.VISIBLE);
             }
         } catch (Exception e) {
@@ -63,8 +63,8 @@ public class GetData extends AsyncTask<String, Void, String> {
 
         try {
 
-            URL url = new URL(params[0] + params[1].replaceAll(" ", "%20").replaceAll("\n", "%0A"));
-            Log.e("sent Url",url.toString());
+            URL url = new URL(params[0] + params[1]);
+            Log.e("sent Url", url.toString());
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
 
@@ -80,8 +80,7 @@ public class GetData extends AsyncTask<String, Void, String> {
                 Log.d("Response: ", "> " + line);   //here u ll get whole response...... :-)
 
             }
-           return  buffer.toString().replace("<meta http-equiv=\"Content-type\" content=\"text/html; charset=UTF-8\" />","");
-
+            return buffer.toString().replace("<meta http-equiv=\"Content-type\" content=\"text/html; charset=UTF-8\" />", "");
 
 
         } catch (Exception e) {
@@ -107,7 +106,7 @@ public class GetData extends AsyncTask<String, Void, String> {
 
             if (result.equals("null"))
                 Toast.makeText(activity, "Error, Please try again..!", Toast.LENGTH_SHORT).show();
-             dialog.setVisibility(View.GONE);
+            dialog.setVisibility(View.GONE);
             delegate.processFinish(result);
             Log.e("TAG-Result: ", result); // this is expecting a response code to be sent from your server upon receiving the POST data
         } catch (Exception e) {

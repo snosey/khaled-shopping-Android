@@ -32,7 +32,7 @@
             android:text="My profile"
             android:textColor="@color/black_8am2"
             android:textSize="@dimen/text_Small"
-            android:textStyle="bold" />
+            />
     </LinearLayout>
 
     <ScrollView
@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/margin_Large"
-                android:text="change"
+                android:text="Change"
                 android:textColor="@color/black_8am2"
                 android:textSize="@dimen/text_Small" />
 
@@ -72,7 +72,7 @@
                 android:paddingLeft="@dimen/margin_Small"
                 android:paddingRight="@dimen/dimen_Small"
                 android:text="Username"
-                android:textColor="@color/blue"
+                android:textColor="@color/mainColor"
                 android:textSize="@dimen/text_Small" />
 
             <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
@@ -88,7 +88,7 @@
                 android:maxLines="1"
                 android:paddingLeft="@dimen/margin_Small"
                 android:paddingRight="@dimen/dimen_Small"
-                android:text="username"
+                android:text="Username"
                 android:textColor="@color/black_fat7"
                 android:textSize="@dimen/text_Small" />
 
@@ -102,7 +102,7 @@
                 android:paddingLeft="@dimen/margin_Small"
                 android:paddingRight="@dimen/dimen_Small"
                 android:text="Your name"
-                android:textColor="@color/blue"
+                android:textColor="@color/mainColor"
                 android:textSize="@dimen/text_Small" />
 
             <com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText
@@ -134,7 +134,7 @@
                 android:paddingLeft="@dimen/margin_Small"
                 android:paddingRight="@dimen/dimen_Small"
                 android:text="Password"
-                android:textColor="@color/blue"
+                android:textColor="@color/mainColor"
                 android:textSize="@dimen/text_Small" />
 
             <com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText
@@ -165,7 +165,7 @@
                 android:paddingLeft="@dimen/margin_Small"
                 android:paddingRight="@dimen/dimen_Small"
                 android:text="Email address"
-                android:textColor="@color/blue"
+                android:textColor="@color/mainColor"
                 android:textSize="@dimen/text_Small" />
 
             <com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText
@@ -196,7 +196,7 @@
                 android:paddingLeft="@dimen/margin_Small"
                 android:paddingRight="@dimen/dimen_Small"
                 android:text="Phone"
-                android:textColor="@color/blue"
+                android:textColor="@color/mainColor"
                 android:textSize="@dimen/text_Small" />
 
             <com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText
@@ -227,7 +227,7 @@
                 android:paddingLeft="@dimen/margin_Small"
                 android:paddingRight="@dimen/dimen_Small"
                 android:text="About me"
-                android:textColor="@color/blue"
+                android:textColor="@color/mainColor"
                 android:textSize="@dimen/text_Small" />
 
             <com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText
@@ -251,7 +251,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/margin_Medium"
                 android:background="@color/red"
-                android:text="update info"
+                android:text="Update info"
                 android:textColor="@color/white" />
 
 

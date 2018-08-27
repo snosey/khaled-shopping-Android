@@ -248,7 +248,6 @@ public class ProductProfile extends Fragment {
         //productImages
         productImages = (SliderLayout) view.findViewById(R.id.productImages);
         productImages.stopAutoCycle();
-
         try {
             new GetData(new GetData.AsyncResponse() {
                 @Override
@@ -300,14 +299,23 @@ public class ProductProfile extends Fragment {
 
                         if (productDetails.getString("isLove").equals("false")) {
                             favourite.setTag("not love");
-                            favourite.setImageResource(R.drawable.love);
+                            favourite.setImageResource(R.drawable.not_love);
                         } else {
                             favourite.setTag("love");
-                            favourite.setImageResource(R.drawable.lovefull);
+                            favourite.setImageResource(R.drawable.full_love);
                         }
                         favourite.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                try {
+                                    if (MainActivity.jsonObjectUser.getString("id").equals(productDetails.getString("id_client"))) {
+                                        Toast.makeText(getActivity(), "You can‘t mark your items as favorite", Toast.LENGTH_SHORT).show();
+                                        return;
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
                                 UrlData urlDataLove = new UrlData();
                                 try {
 
@@ -317,13 +325,13 @@ public class ProductProfile extends Fragment {
                                         favourite.setTag("not love");
                                         urlDataLove.add("state", "remove");
                                         count--;
-                                        favourite.setImageResource(R.drawable.love);
+                                        favourite.setImageResource(R.drawable.not_love);
                                     } else {
                                         favourite.setTag("love");
                                         urlDataLove.add("state", "add");
                                         count++;
-                                        Toast.makeText(getActivity(), "Adding to your list of favourites...", Toast.LENGTH_SHORT).show();
-                                        favourite.setImageResource(R.drawable.lovefull);
+                                        Toast.makeText(getActivity(), "added to your favorites", Toast.LENGTH_SHORT).show();
+                                        favourite.setImageResource(R.drawable.full_love);
                                     }
                                     peopleIntersted.setText((int) ((Integer.parseInt(productDetails.getString("love")) + count)) + "");
                                 } catch (JSONException e) {
@@ -407,12 +415,13 @@ public class ProductProfile extends Fragment {
                         sizeAndState.setText(productDetails.getString("size") + " - " + productDetails.getString("state")
                                 + " - " + productDetails.getString("brand"));
 
-                        price.setText(" L.E~" + productDetails.getString("price"));
+                        price.setText(" " + productDetails.getString("price") + " L.E");
                         itemDescription.setText(productDetails.getString("description"));
                         color.setText(productDetails.getString("color1") + " - " + productDetails.getString("color2"));
                         viewCount.setText(productDetails.getString("view"));
 
-                        location.setText(productDetails.getString("government") + " - " + productDetails.getString("city"));
+                        location.setText(productDetails.getString("government"));
+                        //      + " - " + productDetails.getString("city"));
                         peopleIntersted.setText((int) ((Integer.parseInt(productDetails.getString("love")) + count)) + "");
 
                         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -484,7 +493,7 @@ public class ProductProfile extends Fragment {
                                 }
                             })
                                     .image(WebService.imageLink + productDetails.getString("img1")).error(R.drawable.icon_no_logo)
-                                    .setScaleType(BaseSliderView.ScaleType.CenterInside);
+                                    .setScaleType(BaseSliderView.ScaleType.CenterCrop);
                             productImages.addSlider(textSliderView);
                         }
                         //images 2
@@ -501,7 +510,7 @@ public class ProductProfile extends Fragment {
                                 }
                             })
                                     .image(WebService.imageLink + productDetails.getString("img2")).error(R.drawable.icon_no_logo)
-                                    .setScaleType(BaseSliderView.ScaleType.CenterInside);
+                                    .setScaleType(BaseSliderView.ScaleType.CenterCrop);
                             productImages.addSlider(textSliderView);
                         }
                         //images 3
@@ -518,7 +527,7 @@ public class ProductProfile extends Fragment {
                                 }
                             })
                                     .image(WebService.imageLink + productDetails.getString("img3")).error(R.drawable.icon_no_logo)
-                                    .setScaleType(BaseSliderView.ScaleType.CenterInside);
+                                    .setScaleType(BaseSliderView.ScaleType.CenterCrop);
                             productImages.addSlider(textSliderView);
                         }
                         //images 4
@@ -535,7 +544,7 @@ public class ProductProfile extends Fragment {
                                 }
                             })
                                     .image(WebService.imageLink + productDetails.getString("img4")).error(R.drawable.icon_no_logo)
-                                    .setScaleType(BaseSliderView.ScaleType.CenterInside);
+                                    .setScaleType(BaseSliderView.ScaleType.CenterCrop);
                             productImages.addSlider(textSliderView);
                         }
                         //images 5
@@ -552,7 +561,7 @@ public class ProductProfile extends Fragment {
                                 }
                             })
                                     .image(WebService.imageLink + productDetails.getString("img5")).error(R.drawable.icon_no_logo)
-                                    .setScaleType(BaseSliderView.ScaleType.CenterInside);
+                                    .setScaleType(BaseSliderView.ScaleType.CenterCrop);
                             productImages.addSlider(textSliderView);
                         }
 

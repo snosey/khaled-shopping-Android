@@ -27,7 +27,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class Home extends Fragment {
 
 
-    CustomeTextView favor, myItems, myProfile, logout;
+    CustomeTextView favor, myItems, myProfile, logout, inviteFriends;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -45,6 +45,18 @@ public class Home extends Fragment {
             e.printStackTrace();
         }
         favor = (CustomeTextView) view.findViewById(R.id.favor);
+        inviteFriends = (CustomeTextView) view.findViewById(R.id.inviteFriends);
+        inviteFriends.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String shareBody = "Download Virclo to see the latest products... http://www.example.com";
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Virclo");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(sharingIntent, "Invite Friends"));
+            }
+        });
         favor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,12 +74,13 @@ public class Home extends Fragment {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MainActivity.closeApp = false;
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("login", MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("username", "");
-                editor.commit();
-                getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
+                editor.clear();
+                editor.apply();
                 getActivity().finish();
+                getActivity().startActivity(new Intent(getActivity(), LoginActivity.class));
             }
         });
         myItems = (CustomeTextView) view.findViewById(R.id.myItems);

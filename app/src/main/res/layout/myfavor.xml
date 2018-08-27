@@ -31,8 +31,7 @@
             android:maxLines="1"
             android:text="My favourites"
             android:textColor="@color/black_8am2"
-            android:textSize="@dimen/text_Medium"
-            android:textStyle="bold" />
+            android:textSize="@dimen/text_Medium" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

@@ -52,6 +52,7 @@ public class ClientProfile extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.client_profile, container, false);
 
+
         title = (CustomeTextView) view.findViewById(R.id.title);
         followers = (CustomeTextView) view.findViewById(R.id.followers);
         following = (CustomeTextView) view.findViewById(R.id.following);
@@ -64,6 +65,9 @@ public class ClientProfile extends Fragment {
         call = (ImageView) view.findViewById(R.id.call);
         msg = (ImageView) view.findViewById(R.id.msg);
         logo = (ImageView) view.findViewById(R.id.logo);
+
+
+        productRV.setNestedScrollingEnabled(false);
 
 
         Bundle bundle = getArguments();

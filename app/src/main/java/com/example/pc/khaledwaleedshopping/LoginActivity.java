@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -53,6 +54,7 @@ public class LoginActivity extends FragmentActivity {
     public static String loginKind;
     private CallbackManager callbackManager;
 
+    ImageView background;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +65,8 @@ public class LoginActivity extends FragmentActivity {
         google = (CustomeButton) findViewById(R.id.google);
         signin = (CustomeButton) findViewById(R.id.signin);
         signup = (CustomeButton) findViewById(R.id.signup);
+
+        background = (ImageView) findViewById(R.id.background);
 
         google.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +105,7 @@ public class LoginActivity extends FragmentActivity {
         loginKind = sharedPreferences.getString("kind", "nothing");
 
         if (!username.equals("")) {
+            background.setVisibility(View.VISIBLE);
             CheckLogin(username, password, "", loginKind);
         }
     }
@@ -241,7 +246,7 @@ public class LoginActivity extends FragmentActivity {
         Log.e("handleSignInResult:", "" + result.isSuccess());
         if (result.isSuccess()) {
             GoogleSignInAccount acc = result.getSignInAccount();
-            CheckLogin(acc.getId(), "", "", "google");
+            CheckLogin(acc.getId(), "", "google", "google");
         } else {
             Toast.makeText(LoginActivity.this, "Failed to Sign in", Toast.LENGTH_SHORT).show();
         }
@@ -273,7 +278,7 @@ public class LoginActivity extends FragmentActivity {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
                         Profile profile = Profile.getCurrentProfile();
-                        CheckLogin(profile.getId(), "", "", "facebook");
+                        CheckLogin(profile.getId(), "", "facebook", "facebook");
 
                     }
 
@@ -304,7 +309,7 @@ public class LoginActivity extends FragmentActivity {
                     if (jsonObject.getString("sucess").equals("true")) {
                         CheckLogin(username, password, email, kind);
                     } else
-                        new CustomeDialogMassege(LoginActivity.this, "Username or Email is already exist!");
+                        new CustomeDialogMassege(LoginActivity.this, "Username or Email does already exist!");
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -338,9 +343,12 @@ public class LoginActivity extends FragmentActivity {
                         loginKind = kind;
                         editor.commit();
                         StartMainActivity(jsonObject);
-                    } else if (kind.equals("normal"))
+                    } else if (kind.equals("normal")) {
+                        background.setVisibility(View.GONE);
                         new CustomeDialogMassege(LoginActivity.this, "Username or password is not valid!");
+                    }
                     else {
+                        background.setVisibility(View.GONE);
                         sendDataForSignup(username, email, password, kind);
                     }
 

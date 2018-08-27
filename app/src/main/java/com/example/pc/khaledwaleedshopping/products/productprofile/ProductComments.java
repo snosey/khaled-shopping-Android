@@ -102,7 +102,7 @@ public class ProductComments extends Fragment {
                     }, getActivity(), false).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, WebService.postComments, urlData.get());
 
                 } else
-                    Toast.makeText(getActivity(), "You cant write empty comment!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "You can`t send an empty comment", Toast.LENGTH_SHORT).show();
             }
         });
         return view;

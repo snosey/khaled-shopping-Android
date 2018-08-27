@@ -5,9 +5,9 @@
     android:background="@color/silver"
     android:orientation="vertical">
 
-    <ScrollView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -49,7 +49,7 @@
                         android:maxLines="1"
                         android:textColor="@color/black_8am2"
                         android:textSize="@dimen/text_Medium"
-                        android:textStyle="bold" />
+                        />
 
                 </LinearLayout>
 
@@ -67,7 +67,7 @@
                         android:layout_weight=".15"
                         android:padding="@dimen/margin_Medium"
                         android:src="@drawable/follower"
-                        android:tint="@android:color/darker_gray"
+                        android:tint="@color/secondColor"
                         android:visibility="gone" />
 
                     <!-- logo -->
@@ -76,7 +76,7 @@
                         android:layout_width="0dp"
                         android:layout_height="@dimen/dimen_Large"
                         android:layout_gravity="center"
-                        android:layout_weight=".7"  />
+                        android:layout_weight=".7" />
 
                     <!-- msg -->
                     <ImageView
@@ -111,8 +111,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dimen_VeryVerySmall"
                     android:layout_gravity="center"
-                    android:background="@color/blue"
-                    android:text="follow"
+                    android:background="@color/mainColor"
+                    android:text="Follow"
                     android:textColor="@color/white" />
 
                 <!-- rate -->
@@ -143,7 +143,7 @@
                         android:layout_margin="@dimen/margin_Medium"
                         android:gravity="right"
                         android:text="0"
-                        android:textColor="@color/blue" />
+                        android:textColor="@color/mainColor" />
 
                     <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
 
@@ -152,7 +152,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="@dimen/margin_VerySmall"
-                        android:text="followers,"
+                        android:text="Followers,"
                         android:textColor="@color/black_8am2" />
 
                     <!-- following-->
@@ -164,7 +164,7 @@
                         android:layout_margin="@dimen/margin_Medium"
                         android:gravity="right"
                         android:text="0"
-                        android:textColor="@color/blue" />
+                        android:textColor="@color/mainColor" />
 
                     <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
                         android:id="@+id/followingText"
@@ -172,7 +172,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_margin="@dimen/margin_VerySmall"
-                        android:text="following"
+                        android:text="Following"
                         android:textColor="@color/black_8am2" />
 
                 </LinearLayout>
@@ -184,7 +184,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/margin_Medium"
-                    android:textColor="@color/black_fat7"
+                    android:textColor="@color/black_8am2"
                     android:textSize="@dimen/text_Small" />
 
             </LinearLayout>
@@ -201,5 +201,5 @@
                 android:scrollbars="vertical" />
 
         </LinearLayout>
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 </LinearLayout>

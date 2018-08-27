@@ -32,11 +32,11 @@ public class Location extends Dialog {
     private String govId;
 
     public Location(@NonNull final FragmentActivity activity, final String kind, String govId) {
-        super(activity,android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+        super(activity, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
         this.activity = activity;
         this.govId = govId;
         this.show();
-       // this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         this.kind = kind;
         this.setContentView(R.layout.category_list);
         title = (CustomeTextView) this.findViewById(R.id.title);
@@ -111,12 +111,15 @@ public class Location extends Dialog {
                         try {
                             if (kind.equals("gov")) {
                                 EditProduct.govTitle = jsonArray.get(position).getString("name");
-                                new Location(activity, "city", jsonArray.get(position).getString("id"));
-                            } else if (kind.equals("city")) {
+                                //  new Location(activity, "city", jsonArray.get(position).getString("id"));
+                                EditProduct.location.setText(EditProduct.govTitle);
+                                EditProduct.government_id = jsonArray.get(position).getString("id");
+                            } /*else if (kind.equals("city")) {
+
                                 EditProduct.government_id = govId;
                                 EditProduct.city_id = jsonArray.get(position).getString("id");
                                 EditProduct.location.setText(jsonArray.get(position).getString("name"));
-                            }
+                            }*/
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

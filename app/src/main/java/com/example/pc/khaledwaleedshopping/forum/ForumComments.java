@@ -99,7 +99,7 @@ public class ForumComments extends Fragment {
                     }, getActivity(), false).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, WebService.postCommentsForum, urlData.get());
 
                 } else
-                    Toast.makeText(getActivity(), "You cant write empty comment!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "You can`t send an empty comment", Toast.LENGTH_SHORT).show();
             }
         });
         return view;
@@ -155,10 +155,10 @@ public class ForumComments extends Fragment {
                     Date created_at = format.parse(comment.getString("created_at").substring(0, 10));
                     int days = (int) ((currentDate.getTime() - created_at.getTime()) / (1000 * 60 * 60 * 24));
                     if (days == 0)
-                        holder.date.setText("today");
+                        holder.date.setText("Today");
                     else if (days == 1)
-                        holder.date.setText("yesterday");
-                    else holder.date.setText(days + " days");
+                        holder.date.setText("Yesterday");
+                    else holder.date.setText(days + " Days");
 
                 } catch (ParseException e) {
                     e.printStackTrace();

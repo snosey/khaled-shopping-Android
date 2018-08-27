@@ -9,6 +9,7 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Process;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -28,6 +29,7 @@ import com.example.pc.khaledwaleedshopping.clientprofile.ClientProfile;
 import com.example.pc.khaledwaleedshopping.clientprofile.ClientReviews;
 import com.example.pc.khaledwaleedshopping.masseges.Chat;
 import com.example.pc.khaledwaleedshopping.masseges.Inbox;
+import com.example.pc.khaledwaleedshopping.myprofile.Favourites;
 import com.example.pc.khaledwaleedshopping.myprofile.MyProfile;
 import com.example.pc.khaledwaleedshopping.products.addproduct.AddProduct;
 import com.example.pc.khaledwaleedshopping.products.home.Home;
@@ -47,10 +49,11 @@ public class MainActivity extends FragmentActivity {
     Inbox fragmentMsg;
     public static boolean chatOn = false;
     com.example.pc.khaledwaleedshopping.myprofile.Home fragmentProfile;
-    com.example.pc.khaledwaleedshopping.forum.Home fragmentForum;
+    Favourites favorites;
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private BroadcastReceiver mRegistrationBroadcastReceiver;
+    public static boolean closeApp = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -276,13 +279,13 @@ public class MainActivity extends FragmentActivity {
         ft.commit();
     }
 
-    public void forum(View view) {
-        /* FragmentManager fm = getSupportFragmentManager();
+    public void favorites(View view) {
+        FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
-        fragmentForum = new com.example.pc.khaledwaleedshopping.forum.Home();
-        ft.replace(R.id.activity_main_content_fragment3, fragmentForum);
+        favorites = new Favourites();
+        ft.replace(R.id.activity_main_content_fragment3, favorites);
         ft.addToBackStack(null);
-        ft.commit(); */
+        ft.commit();
     }
 
     public void profile(View view) {
@@ -333,5 +336,12 @@ public class MainActivity extends FragmentActivity {
                 android.os.Process.killProcess(android.os.Process.myPid());
             }
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        if (closeApp)
+            Process.killProcess(Process.myPid());
+        super.onDestroy();
     }
 }

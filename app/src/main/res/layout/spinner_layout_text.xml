@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:gravity="left"
+    android:gravity="start"
     android:textColor="@color/colorPrimary"
     android:textSize="@dimen/text_Small"
     android:background="@color/colorAccent"

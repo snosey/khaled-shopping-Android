@@ -18,13 +18,13 @@ import android.widget.Toast;
 
 import com.example.pc.khaledwaleedshopping.MainActivity;
 import com.example.pc.khaledwaleedshopping.R;
+import com.example.pc.khaledwaleedshopping.Support.design.CustomeButton;
+import com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText;
+import com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView;
 import com.example.pc.khaledwaleedshopping.Support.image.CircleTransform;
 import com.example.pc.khaledwaleedshopping.Support.webservice.GetData;
 import com.example.pc.khaledwaleedshopping.Support.webservice.UrlData;
 import com.example.pc.khaledwaleedshopping.Support.webservice.WebService;
-import com.example.pc.khaledwaleedshopping.Support.design.CustomeButton;
-import com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText;
-import com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.willy.ratingbar.BaseRatingBar;
@@ -88,6 +88,15 @@ public class ClientReviews extends Fragment {
         commentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                try {
+                    if (MainActivity.jsonObjectUser.getString("id").equals(clientId)) {
+                        Toast.makeText(getActivity(), "You can‘t review yourself", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 addReview();
             }
         });
@@ -206,10 +215,10 @@ public class ClientReviews extends Fragment {
                     Date created_at = format.parse(reviewRow.getString("created_at").substring(0, 10));
                     int days = (int) ((currentDate.getTime() - created_at.getTime()) / (1000 * 60 * 60 * 24));
                     if (days == 0)
-                        holder.date.setText("today");
+                        holder.date.setText("Today");
                     else if (days == 1)
-                        holder.date.setText("yesterday");
-                    else holder.date.setText(days + " days");
+                        holder.date.setText("Yesterday");
+                    else holder.date.setText(days + " Days");
 
                 } catch (ParseException e) {
                     e.printStackTrace();

@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
@@ -27,21 +28,22 @@ import org.json.JSONObject;
  */
 
 public class FullFilter extends Dialog {
-    static CustomeTextView location;
+    static CustomeTextView location, brands;
     ImageView close;
-    static Spinner colors1, colors2, brands, size, condition;
-    CustomeButton filter;
+    static Spinner colors1, colors2, size, condition, government;
+    public CustomeButton filter, defaultFilter;
     CustomeButton category;
     protected static JSONObject jsonObject = null;
     protected static int categoryNumber;
-    protected static String category1_id, category2_id, category3_id, city_id, government_id;
+    protected static String category1_id, category2_id, category3_id, city_id, government_id, brandId;
     protected static CustomeTextView categoryTitle, textSize;
     protected static String category2Title = "", category1Title = "", govTitle = "";
     private String id;
     CrystalRangeSeekbar price;
+    CheckBox swap;
 
     public FullFilter(@NonNull final FragmentActivity context) {
-        super(context, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+        super(context, android.R.style.Theme_Holo_Light_NoActionBar_Fullscreen);
         {
             this.setContentView(R.layout.full_filter);
             textSize = (CustomeTextView) this.findViewById(R.id.text_size);
@@ -57,17 +59,17 @@ public class FullFilter extends Dialog {
 
             final CustomeTextView tvMin = (CustomeTextView) this.findViewById(R.id.min);
             final CustomeTextView tvMax = (CustomeTextView) this.findViewById(R.id.max);
-
+            swap = (CheckBox) this.findViewById(R.id.swap);
             // set listener
             price.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
                 @Override
                 public void valueChanged(Number minValue, Number maxValue) {
-                    if (minValue.intValue() == 1000)
+                    if (minValue.intValue() == 2100)
                         tvMin.setText("∞");
                     else
                         tvMin.setText(String.valueOf(minValue));
 
-                    if (maxValue.intValue() == 1000)
+                    if (maxValue.intValue() == 2100)
                         tvMax.setText("∞");
                     else
                         tvMax.setText(String.valueOf(maxValue));
@@ -87,6 +89,7 @@ public class FullFilter extends Dialog {
             government_id = "-1";
             category2_id = "-1";
             category3_id = "-1";
+            brandId = "-1";
 
             location = (CustomeTextView) this.findViewById(R.id.location);
             location.setOnClickListener(new View.OnClickListener() {
@@ -102,12 +105,14 @@ public class FullFilter extends Dialog {
             categoryTitle = (CustomeTextView) this.findViewById(R.id.category_title);
             category = (CustomeButton) this.findViewById(R.id.category);
             filter = (CustomeButton) this.findViewById(R.id.filter);
+            defaultFilter = (CustomeButton) this.findViewById(R.id.defaultFilter);
 
             colors1 = (Spinner) this.findViewById(R.id.colors1);
             colors2 = (Spinner) this.findViewById(R.id.colors2);
-            brands = (Spinner) this.findViewById(R.id.brands);
+            brands = (CustomeTextView) this.findViewById(R.id.brands);
             size = (Spinner) this.findViewById(R.id.size);
             condition = (Spinner) this.findViewById(R.id.condition);
+            government = (Spinner) this.findViewById(R.id.government);
 
 
             new GetData(new GetData.AsyncResponse() {
@@ -118,14 +123,21 @@ public class FullFilter extends Dialog {
                         jsonObject = new JSONObject(result);
                         colors1.setAdapter(new CustomeAdapter(getContext(), jsonObject.getJSONArray("color"), "color"));
                         colors2.setAdapter(new CustomeAdapter(getContext(), jsonObject.getJSONArray("color"), "color"));
-                        brands.setAdapter(new CustomeAdapter(getContext(), jsonObject.getJSONArray("brands"), "name"));
                         condition.setAdapter(new CustomeAdapter(getContext(), jsonObject.getJSONArray("condition"), "title"));
+                        government.setAdapter(new CustomeAdapter(getContext(), jsonObject.getJSONArray("government"), "name"));
                         size.setVisibility(View.GONE);
                         textSize.setVisibility(View.GONE);
                         category.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 new Category(context);
+                            }
+                        });
+
+                        brands.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                new Brands(context);
                             }
                         });
                         filter.setOnClickListener(new View.OnClickListener() {
@@ -153,17 +165,19 @@ public class FullFilter extends Dialog {
         urlData.add("id_category2", category2_id);
         urlData.add("id_category3", category3_id);
 
-
+        if (swap.isChecked())
+            urlData.add("swap", "1");
+        else
+            urlData.add("swap", "-1");
         urlData.add("price_to", price.getSelectedMaxValue().toString());
         urlData.add("price_from", price.getSelectedMinValue().toString());
 
 
-        CustomeTextView brandsChooseText = (CustomeTextView) brands.getSelectedView();
-        urlData.add("id_brand", brandsChooseText.getTag().toString());
+        urlData.add("id_brand", brandId);
 
         CustomeTextView sizeChooseText = (CustomeTextView) size.getSelectedView();
         if (size.getVisibility() == View.GONE) {
-            urlData.add("id_size", "36");
+            urlData.add("id_size", "-1");
         } else {
             urlData.add("id_size", sizeChooseText.getTag().toString());
         }

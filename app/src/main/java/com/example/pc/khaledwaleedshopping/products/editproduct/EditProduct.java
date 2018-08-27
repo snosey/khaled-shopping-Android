@@ -62,11 +62,11 @@ import static com.facebook.FacebookSdk.getApplicationContext;
 public class EditProduct extends Fragment {
     RecyclerView productImages;
     CustomeTextView priceError, titleError, imageError;
-    static CustomeTextView location;
+    static CustomeTextView location, brands;
     ImageAdapter imageAdapter;
     String views;
     List<Uri> imageList;
-    Spinner colors1, colors2, brands, condition;
+    Spinner colors1, colors2, condition;
     protected static Spinner size;
     CheckBox swap;
     ImageView close;
@@ -76,7 +76,7 @@ public class EditProduct extends Fragment {
     CustomeEditText title, description, price;
     protected static JSONObject jsonObject = null;
     protected static int categoryNumber;
-    protected static String category1_id, category2_id, category3_id, city_id, government_id;
+    protected static String category1_id, category2_id, category3_id, city_id, government_id, brandId;
     protected static CustomeTextView categoryTitle, textSize;
     protected static String category2Title = "", category1Title = "", govTitle = "";
     private String productId;
@@ -108,11 +108,11 @@ public class EditProduct extends Fragment {
         location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (government_id.equals("-1"))
-                    new Location(getActivity(), "gov", "-1");
-                else
+                //    if (government_id.equals("-1"))
+                new Location(getActivity(), "gov", "-1");
+              /*  else
                     new Location(getActivity(), "city", government_id);
-
+*/
             }
         });
         price = (CustomeEditText) view.findViewById(R.id.price);
@@ -134,7 +134,7 @@ public class EditProduct extends Fragment {
             public void afterTextChanged(Editable editable) {
                 String str = price.getText().toString();
                 if (str.length() == 1 && len == 0) {
-                    price.setText("L.E~" + str);
+                    price.setText(str + " L.E");
                     Selection.setSelection(price.getText(), price.getText().length());
                 } else if (str.length() == 1 && len == 2) price.setText("");
 
@@ -207,7 +207,7 @@ public class EditProduct extends Fragment {
                 builder.setMessage("Are you sure you want to delete this entry?")
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                getActivity().onBackPressed();
+                                getActivity().recreate();
                             }
                         })
                         .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
@@ -222,7 +222,7 @@ public class EditProduct extends Fragment {
 
         colors1 = (Spinner) view.findViewById(R.id.colors1);
         colors2 = (Spinner) view.findViewById(R.id.colors2);
-        brands = (Spinner) view.findViewById(R.id.brands);
+        brands = (CustomeTextView) view.findViewById(R.id.brands);
         size = (Spinner) view.findViewById(R.id.size);
         condition = (Spinner) view.findViewById(R.id.condition);
         swap = (CheckBox) view.findViewById(R.id.swap);
@@ -245,7 +245,6 @@ public class EditProduct extends Fragment {
                     jsonObject = new JSONObject(result);
                     colors1.setAdapter(new CustomeAdapter(getContext(), jsonObject.getJSONArray("color"), "color", "color1"));
                     colors2.setAdapter(new CustomeAdapter(getContext(), jsonObject.getJSONArray("color"), "color", "color2"));
-                    brands.setAdapter(new CustomeAdapter(getContext(), jsonObject.getJSONArray("brands"), "name", "brands"));
                     condition.setAdapter(new CustomeAdapter(getContext(), jsonObject.getJSONArray("condition"), "title", "condition"));
                     size.setVisibility(View.GONE);
                     textSize.setVisibility(View.GONE);
@@ -253,6 +252,12 @@ public class EditProduct extends Fragment {
                         @Override
                         public void onClick(View view) {
                             new Category(getActivity());
+                        }
+                    });
+                    brands.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            new Brands(getActivity());
                         }
                     });
                     update.setOnClickListener(new View.OnClickListener() {
@@ -305,18 +310,17 @@ public class EditProduct extends Fragment {
                     category3_id = jsonObject.getString("id_category3");
                     city_id = jsonObject.getString("id_city");
                     government_id = jsonObject.getString("id_government");
-
-
+                    brandId = jsonObject.getString("id_brand");
                     title.setText(jsonObject.getString("title"));
                     description.setText(jsonObject.getString("description"));
-                    price.setText("L.E~" + jsonObject.getString("price"));
+                    price.setText(jsonObject.getString("price") + " L.E");
 
                     if (jsonObject.getString("swap").equals("0"))
                         swap.setChecked(false);
                     else
                         swap.setChecked(true);
 
-                    location.setText(jsonObject.getString("city"));
+                    location.setText(govTitle);
 
 
                     if (!jsonObject.getString("img1").equals(" "))
@@ -338,7 +342,6 @@ public class EditProduct extends Fragment {
 
                     colors1.setSelection(CustomeAdapter.color1map.get(jsonObject.getString("id_color1")));
                     colors2.setSelection(CustomeAdapter.color2map.get(jsonObject.getString("id_color2")));
-                    brands.setSelection(CustomeAdapter.brandsMap.get(jsonObject.getString("id_brand")));
                     size.setSelection(CustomeAdapter.sizeMap.get(jsonObject.getString("id_size")));
                     condition.setSelection(CustomeAdapter.condtionMap.get(jsonObject.getString("id_condition_state")));
 
@@ -369,7 +372,7 @@ public class EditProduct extends Fragment {
                             urlData.add("id_category1", category1_id);
                             urlData.add("id_category2", category2_id);
                             urlData.add("id_category3", category3_id);
-                            urlData.add("price", price.getText().toString().replace("L.E~", ""));
+                            urlData.add("price", price.getText().toString().replace(" L.E", ""));
 
                             if (swap.isChecked())
                                 urlData.add("swap", "1");
@@ -383,8 +386,7 @@ public class EditProduct extends Fragment {
                                 urlData.add("img" + i, " ");
                             }
 
-                            CustomeTextView brandsChooseText = (CustomeTextView) brands.getSelectedView();
-                            urlData.add("id_brand", brandsChooseText.getTag().toString());
+                             urlData.add("id_brand", brandId);
 
                             CustomeTextView sizeChooseText = (CustomeTextView) size.getSelectedView();
                             if (size.getVisibility() == View.GONE) {
@@ -411,11 +413,10 @@ public class EditProduct extends Fragment {
                                     try {
                                         FragmentManager fm = getActivity().getSupportFragmentManager();
                                         FragmentTransaction ft = fm.beginTransaction();
-                                        fragmentHome = new Home();
-                                        Home.downScroll = -1;
+                                        fragmentHome = new com.example.pc.khaledwaleedshopping.products.home.Home();
+                                        fragmentHome.downScroll = -1;
                                         ft.replace(R.id.activity_main_content_fragment3, fragmentHome);
                                         ft.commit();
-                                        fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                                     } catch (Exception e) {
                                         e.printStackTrace();
                                     }
@@ -536,7 +537,7 @@ public class EditProduct extends Fragment {
         if (requestCode == ConstantsCustomGallery.REQUEST_CODE && resultCode == RESULT_OK && data != null) {
             //The array list has the image paths of the selected images
             ArrayList<in.myinnos.awesomeimagepicker.models.Image> images = data.getParcelableArrayListExtra(ConstantsCustomGallery.INTENT_EXTRA_IMAGES);
-            CompressImage compressImage=new CompressImage();
+            CompressImage compressImage = new CompressImage();
             for (int i = 0; i < images.size(); i++) {
                 Uri uri = Uri.fromFile(compressImage.compress(new File(images.get(i).path)));
                 imageList.add(uri);

@@ -1,5 +1,7 @@
 package com.example.pc.khaledwaleedshopping.myprofile;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -37,9 +39,7 @@ public class MyItems extends Fragment {
         productRV = (RecyclerView) view.findViewById(R.id.productList);
         final GridLayoutManager mLayoutManager;
         DisplayMetrics displayMetrics = getActivity().getResources().getDisplayMetrics();
-        float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        int noOfColumns = (int) (dpWidth / 180);
-        mLayoutManager = new GridLayoutManager(getActivity(), noOfColumns);
+        mLayoutManager = new GridLayoutManager(getActivity(), 2);
         productRV.setLayoutManager(mLayoutManager);
         favorProducts = new JSONArray();
         productListAdapter = new ProductListAdapter(favorProducts, getActivity(), "Edit");
@@ -59,6 +59,14 @@ public class MyItems extends Fragment {
                         JSONArray jsonArray = new JSONArray(result);
                         for (int postion = 0; postion < jsonArray.length(); postion++)
                             favorProducts.put(jsonArray.getJSONObject(postion));
+                        if (favorProducts.length() == 0) {
+                            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+                            alertDialogBuilder.setMessage("You have no items yet").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    getActivity().onBackPressed();
+                                }
+                            }).show();
+                        }
                         productListAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         e.printStackTrace();

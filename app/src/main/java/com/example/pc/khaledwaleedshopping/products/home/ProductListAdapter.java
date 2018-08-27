@@ -1,6 +1,5 @@
 package com.example.pc.khaledwaleedshopping.products.home;
 
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -23,7 +22,6 @@ import com.example.pc.khaledwaleedshopping.Support.webservice.GetData;
 import com.example.pc.khaledwaleedshopping.Support.webservice.UrlData;
 import com.example.pc.khaledwaleedshopping.Support.webservice.WebService;
 import com.example.pc.khaledwaleedshopping.clientprofile.ClientProfile;
-import com.example.pc.khaledwaleedshopping.products.editproduct.EditProduct;
 import com.example.pc.khaledwaleedshopping.products.productprofile.ProductProfile;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
@@ -85,43 +83,47 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    if (kind.equals("Edit")) {
-                        FragmentManager fm = activity.getSupportFragmentManager();
-                        FragmentTransaction ft = fm.beginTransaction();
-                        EditProduct fragment = new EditProduct();
-                        fragment.setArguments(bundle);
-                        ft.replace(R.id.activity_main_content_fragment3, fragment);
-                        ft.addToBackStack(null);
-                        ft.commit();
-                    } else {
-                        FragmentManager fm = activity.getSupportFragmentManager();
-                        FragmentTransaction ft = fm.beginTransaction();
-                        ProductProfile fragment = new ProductProfile();
-                        fragment.setArguments(bundle);
-                        ft.replace(R.id.activity_main_content_fragment3, fragment);
-                        ft.addToBackStack(null);
-                        ft.commit();
-                    }
+
+                    FragmentManager fm = activity.getSupportFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ProductProfile fragment = new ProductProfile();
+                    fragment.setArguments(bundle);
+                    ft.replace(R.id.activity_main_content_fragment3, fragment);
+                    ft.addToBackStack(null);
+                    ft.commit();
+
                 }
             });
 
-            holder.price.setText("L.E~" + jsonObjectsList.getJSONObject(position).getString("price"));
+            holder.price.setText(jsonObjectsList.getJSONObject(position).getString("price") + " L.E");
             holder.brand.setText(jsonObjectsList.getJSONObject(position).getString("brand"));
-            holder.username.setText(jsonObjectsList.getJSONObject(position).getString("name"));
+            holder.username.setText(jsonObjectsList.getJSONObject(position).getString("username"));
+            if (jsonObjectsList.getJSONObject(position).getString("swap").equals("1")) {
+                holder.swap.setVisibility(View.VISIBLE);
+            } else holder.swap.setVisibility(View.GONE);
             holder.size.setText(jsonObjectsList.getJSONObject(position).getString("size"));
 
             if (holder.enter && jsonObjectsList.getJSONObject(position).getString("isLove").equals("false")) {
                 holder.love.setTag("not love");
-                holder.love.setCompoundDrawablesWithIntrinsicBounds(R.drawable.love, 0, 0, 0);
-                holder.enter = false;
+                holder.love.setImageResource(R.drawable.not_love);
+                //      holder.enter = false;
             } else if (holder.enter && jsonObjectsList.getJSONObject(position).getString("isLove").equals("true")) {
                 holder.love.setTag("love");
-                holder.enter = false;
-                holder.love.setCompoundDrawablesWithIntrinsicBounds(R.drawable.lovefull, 0, 0, 0);
+                //       holder.enter = false;
+                holder.love.setImageResource(R.drawable.full_love);
             }
             holder.love.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
+                    try {
+                        if (MainActivity.jsonObjectUser.getString("id").equals(jsonObjectsList.getJSONObject(position).getString("id_client"))) {
+                            Toast.makeText(activity, "You can‘t mark your items as favorite", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     UrlData urlData = new UrlData();
                     try {
 
@@ -132,15 +134,15 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
                             urlData.add("state", "remove");
                             if (holder.count != 0)
                                 holder.count--;
-                            holder.love.setCompoundDrawablesWithIntrinsicBounds(R.drawable.love, 0, 0, 0);
+                            holder.love.setImageResource(R.drawable.not_love);
                         } else {
                             holder.love.setTag("love");
                             urlData.add("state", "add");
                             holder.count++;
-                            Toast.makeText(activity, "Adding to your list of favourites...", Toast.LENGTH_SHORT).show();
-                            holder.love.setCompoundDrawablesWithIntrinsicBounds(R.drawable.lovefull, 0, 0, 0);
+                            Toast.makeText(activity, "added to your favorites", Toast.LENGTH_SHORT).show();
+                            holder.love.setImageResource(R.drawable.full_love);
                         }
-                        holder.love.setText((Integer.parseInt(jsonObjectsList.getJSONObject(position).getString("love")) + holder.count) + "");
+                        //       holder.love.setText((Integer.parseInt(jsonObjectsList.getJSONObject(position).getString("love")) + holder.count) + "");
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -155,7 +157,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
             });
 
 
-            holder.love.setText((Integer.parseInt(jsonObjectsList.getJSONObject(position).getString("love")) + holder.count) + "");
+            //  holder.love.setText((Integer.parseInt(jsonObjectsList.getJSONObject(position).getString("love")) + holder.count) + "");
             if (!jsonObjectsList.getJSONObject(position).getString("img1").equals("") &&
                     !jsonObjectsList.getJSONObject(position).getString("img1").contains("https:")) {
 
@@ -211,20 +213,21 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
         boolean enter = true;
         int count = 0;
-        public ImageView userIcon, productImage;
-        CustomeTextView username, size, brand, price, love;
+        public ImageView userIcon, productImage, love, swap;
+        CustomeTextView username, size, brand, price;
         LinearLayout top;
 
         public MyViewHolder(View v) {
             super(v);
             username = (CustomeTextView) v.findViewById(R.id.username);
+            swap = (ImageView) v.findViewById(R.id.swap);
             size = (CustomeTextView) v.findViewById(R.id.size);
             brand = (CustomeTextView) v.findViewById(R.id.brand);
             top = (LinearLayout) v.findViewById(R.id.userInfo);
             if (kind.equals("profile_main") || kind.equals("Edit"))
                 top.setVisibility(View.GONE);
             price = (CustomeTextView) v.findViewById(R.id.price);
-            love = (CustomeTextView) v.findViewById(R.id.love);
+            love = (ImageView) v.findViewById(R.id.love);
             userIcon = (ImageView) v.findViewById(R.id.usericon);
             productImage = (ImageView) v.findViewById(R.id.imgProduct);
         }

@@ -21,7 +21,7 @@
         android:layout_centerInParent="true"
         android:layout_margin="@dimen/margin_Small"
         android:background="@drawable/button"
-        android:backgroundTint="@color/blue"
+        android:backgroundTint="@color/mainColor"
         android:textColor="@color/white"
         android:textSize="@dimen/text_VerySmall" />
 

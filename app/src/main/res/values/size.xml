@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="dimen_Large">280dp</dimen>
+    <dimen name="dimen_very_Medium">230dp</dimen>
     <dimen name="dimen_Medium">150dp</dimen>
     <dimen name="dimen_Small">75dp</dimen>
     <dimen name="dimen_VerySmall">40dp</dimen>

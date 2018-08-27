@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
-        android:background="@color/red"
+        android:background="@drawable/shadow"
         android:orientation="horizontal">
 
 
@@ -19,9 +19,8 @@
             android:layout_margin="@dimen/margin_Medium"
             android:gravity="left|center"
             android:text="Inbox"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_Medium"
-            android:textStyle="bold" />
+            android:textColor="@color/black_8am2"
+            android:textSize="@dimen/text_Medium" />
 
     </LinearLayout>
 
@@ -44,24 +43,25 @@
             android:onClick="home"
             android:padding="2dp"
             android:src="@drawable/home"
-            android:tint="@android:color/darker_gray" />
+            android:tint="@color/secondColor" />
 
         <ImageView
-            android:id="@+id/forum"
+            android:id="@+id/favorites"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="@dimen/margin_Medium"
             android:layout_weight="1"
-            android:onClick="forum"
+            android:onClick="favorites"
             android:padding="2dp"
-            android:src="@drawable/forum"
-            android:tint="@android:color/darker_gray" />
+            android:src="@drawable/myfavor"
+            android:tint="@color/secondColor" />
+
 
         <ImageView
             android:id="@+id/add_product"
             android:layout_width="0dp"
+            android:layout_gravity="center"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/margin_Small"
             android:layout_weight="1"
             android:onClick="addProduct"
             android:paddingBottom="3dp"
@@ -69,18 +69,20 @@
             android:tint="@color/red" />
 
 
+
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:layout_margin="@dimen/margin_Medium"
             android:layout_weight="1">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/margin_Medium"
+                android:onClick="msg"
                 android:padding="2dp"
                 android:src="@drawable/msg"
-                android:tint="@color/blue" />
+                android:tint="@color/mainColor" />
 
             <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
                 android:id="@+id/msgNumber"
@@ -92,7 +94,7 @@
                 android:backgroundTint="@color/red"
                 android:padding="@dimen/margin_VerySmall"
                 android:textColor="@color/white"
-                android:textSize="@dimen/text_VerySmall"
+                android:textSize="7sp"
                 android:visibility="invisible" />
         </RelativeLayout>
 
@@ -105,7 +107,7 @@
             android:onClick="profile"
             android:padding="2dp"
             android:src="@drawable/myprofile"
-            android:tint="@android:color/darker_gray" />
+            android:tint="@color/secondColor" />
 
     </LinearLayout>
 

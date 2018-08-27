@@ -12,7 +12,7 @@
         android:weightSum="1">
 
         <ImageView
-            android:layout_width="@dimen/dimen_Large"
+            android:layout_width="@dimen/dimen_Medium"
             android:layout_height="@dimen/dimen_Large"
             android:src="@drawable/logo" />
 
@@ -22,8 +22,8 @@
             android:layout_height="@dimen/dimen_VerySmall"
             android:layout_margin="@dimen/margin_Small"
             android:background="@drawable/button"
-            android:backgroundTint="@color/blue"
-            android:text="Continue with Facebook"
+            android:backgroundTint="@color/mainColor"
+            android:text="Login with Facebook"
             android:textAllCaps="false"
             android:textColor="@color/white" />
 
@@ -34,7 +34,7 @@
             android:layout_margin="@dimen/margin_Small"
             android:background="@drawable/button"
             android:backgroundTint="@color/red"
-            android:text="Continue with Google"
+            android:text="Login with Google"
             android:textAllCaps="false"
             android:textColor="@color/white" />
 
@@ -68,6 +68,14 @@
         </LinearLayout>
 
     </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:id="@+id/background"
+        android:visibility="gone"
+        android:background="@drawable/background"
+        android:layout_height="match_parent" />
 
     <ProgressBar
         android:id="@+id/progress"

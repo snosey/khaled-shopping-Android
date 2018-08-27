@@ -11,4 +11,8 @@
     <style name="spinner_style">
         <item name="android:background">@drawable/background_spinner</item>
     </style>
+    <style name="AppSearchView" parent="Widget.AppCompat.SearchView">
+        <item name="android:textSize">@dimen/text_Medium</item>
+        <item name="android:textColor">@color/black_8am2</item>
+    </style>
 </resources>

@@ -51,7 +51,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_toRightOf="@id/userIcon"
-        android:textColor="@color/blue"
+        android:textColor="@color/mainColor"
         android:textSize="@dimen/text_Small" />
 
 

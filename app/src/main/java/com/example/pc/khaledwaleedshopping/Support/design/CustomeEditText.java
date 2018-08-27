@@ -6,6 +6,7 @@ package com.example.pc.khaledwaleedshopping.Support.design;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
@@ -18,18 +19,24 @@ public class CustomeEditText extends android.support.v7.widget.AppCompatEditText
     public CustomeEditText(Context context) {
         super(context);
         Typeface face = Typeface.createFromAsset(context.getAssets(), "font.ttf");
+        this.setTextColor(Color.BLACK);
+        this.setHintTextColor(Color.BLACK);
         //  this.setTypeface(face);
         this.setTextColor(ResourcesCompat.getColor(getResources(), R.color.black_8am2, null));
     }
 
     public CustomeEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.setTextColor(Color.BLACK);
+        this.setHintTextColor(Color.BLACK);
         Typeface face = Typeface.createFromAsset(context.getAssets(), "font.ttf");
         //  this.setTypeface(face);
     }
 
     public CustomeEditText(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+        this.setTextColor(Color.BLACK);
+        this.setHintTextColor(Color.BLACK);
         Typeface face = Typeface.createFromAsset(context.getAssets(), "font.ttf");
         //   this.setTypeface(face);
     }

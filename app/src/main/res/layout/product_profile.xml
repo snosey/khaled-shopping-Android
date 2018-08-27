@@ -31,7 +31,7 @@
             android:maxLines="1"
             android:textColor="@color/black_8am2"
             android:textSize="@dimen/text_Medium"
-            android:textStyle="bold" />
+            />
     </LinearLayout>
 
     <ScrollView
@@ -132,7 +132,7 @@
                     android:layout_height="@dimen/dimen_VerySmall"
                     android:layout_margin="@dimen/margin_Medium"
                     android:background="@drawable/button"
-                    android:backgroundTint="@color/blue"
+                    android:backgroundTint="@color/mainColor"
                     android:text="MESSAGE SELLER"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/text_Small" />
@@ -162,8 +162,7 @@
                         android:layout_height="@dimen/dimen_VeryVerySmall"
                         android:layout_weight="1"
                         android:padding="@dimen/margin_Small"
-                        android:src="@drawable/love"
-                        android:tint="@android:color/darker_gray" />
+                        android:src="@drawable/not_love" />
 
                     <ImageView
                         android:id="@+id/call"
@@ -172,7 +171,7 @@
                         android:layout_weight="1"
                         android:padding="@dimen/margin_Small"
                         android:src="@drawable/mobile"
-                        android:tint="@android:color/darker_gray"
+                        android:tint="@color/secondColor"
                         android:visibility="invisible" />
 
 
@@ -191,7 +190,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_Medium"
                 android:background="@color/silver"
-                android:text="Item Description"
+                android:text="Description"
                 android:textSize="@dimen/text_Medium" />
 
             <!-- Product Description -->
@@ -205,8 +204,10 @@
                     android:id="@+id/itemDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_Medium"
-                    android:textColor="@color/black_fat7"
+                    android:padding="@dimen/margin_Medium"
+                    android:background="@drawable/shadow"
+                    android:textStyle="bold"
+                    android:textColor="@color/black_8am2"
                     android:textSize="@dimen/text_Small" />
 
 
@@ -377,7 +378,7 @@
                     android:layout_weight=".5"
                     android:gravity="center"
                     android:text="SIMILAR ITEMS"
-                    android:textColor="@android:color/darker_gray"
+                    android:textColor="@color/secondColor"
                     android:textSize="@dimen/text_Small" />
 
             </LinearLayout>

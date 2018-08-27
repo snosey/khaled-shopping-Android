@@ -22,7 +22,7 @@
         android:layout_margin="@dimen/margin_Medium"
         android:background="@drawable/button"
         android:backgroundTint="@color/red"
-        android:text="ok"
+        android:text="Ok"
         android:textColor="@color/white" />
 
 </LinearLayout>
