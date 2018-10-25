@@ -206,7 +206,6 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/margin_Medium"
                     android:background="@drawable/shadow"
-                    android:textStyle="bold"
                     android:textColor="@color/black_8am2"
                     android:textSize="@dimen/text_Small" />
 

@@ -1,7 +1,9 @@
 {
   "project_info": {
     "project_number": "489967054898",
-    "project_id": "khaled-shopping"
+    "firebase_url": "https://khaled-shopping.firebaseio.com",
+    "project_id": "khaled-shopping",
+    "storage_bucket": "khaled-shopping.appspot.com"
   },
   "client": [
     {
@@ -17,11 +19,11 @@
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.pc.khaledwaleedshopping",
-            "certificate_hash": "d3c67452dda52caaeb1b696e95bf2246ca5388ac"
+            "certificate_hash": "e5ab8db91fbd260296217bbb80b35ecac92733f3"
           }
         },
         {
-          "client_id": "489967054898-08jrg5dfcjhjget3bgbajr102btt89nf.apps.googleusercontent.com",
+          "client_id": "489967054898-lq8k6rilt8dfhd0k03410dcuk6616u4t.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -35,11 +37,23 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "489967054898-bebu0kv38n7ml5ut85ur1cj3huiggl3d.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "489967054898-dnnvlnmuvh39813tdvb2u5iesv50oht9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.Haseboty.Shopping"
+              }
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }

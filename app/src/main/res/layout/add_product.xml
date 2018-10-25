@@ -69,7 +69,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/shadow"
                 android:gravity="left"
-                android:hint="Title,e.g. Converse shoes"
+                android:hint="Title, e.g. Converse shoes"
                 android:inputType="text"
                 android:maxLines="1"
                 android:padding="@dimen/margin_Medium"

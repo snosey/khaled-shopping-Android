@@ -148,7 +148,7 @@
                 android:drawableEnd="@drawable/next"
                 android:gravity="start"
                 android:padding="@dimen/margin_Medium"
-                android:text="Click here to choose a brand" />
+                android:text="All" />
 
 
             <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
@@ -295,7 +295,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/margin_Medium"
                 android:background="@color/mainColor"
-                android:text="Clear"
+                android:text="Reset Filter"
                 android:textColor="@color/white" />
 
 

@@ -1,19 +1,27 @@
 package com.example.pc.khaledwaleedshopping.myprofile;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
+import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.pc.khaledwaleedshopping.LoginActivity;
 import com.example.pc.khaledwaleedshopping.MainActivity;
@@ -27,6 +35,15 @@ import com.example.pc.khaledwaleedshopping.Support.image.UploadImage;
 import com.example.pc.khaledwaleedshopping.Support.webservice.GetData;
 import com.example.pc.khaledwaleedshopping.Support.webservice.UrlData;
 import com.example.pc.khaledwaleedshopping.Support.webservice.WebService;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -38,6 +55,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import in.myinnos.awesomeimagepicker.activities.AlbumSelectActivity;
 import in.myinnos.awesomeimagepicker.helpers.ConstantsCustomGallery;
@@ -53,10 +71,14 @@ import static com.example.pc.khaledwaleedshopping.MainActivity.fragmentHome;
 public class MyProfile extends Fragment {
     CustomeTextView username, change, emailError, phoneError, passwordError, nameError;
     CustomeButton update;
-    CustomeEditText email, phone, password, about, name;
+    CustomeEditText email, phone, password, about, firstName, lastName;
     ImageView logo;
     List<Uri> logoUri;
     private String logoLast = "";
+    private String oldPassword = "";
+    private String code = "$";
+    private String verificationId = "";
+    private FirebaseAuth mAuth;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,7 +92,8 @@ public class MyProfile extends Fragment {
         logo = (ImageView) view.findViewById(R.id.clientLogo);
         username = (CustomeTextView) view.findViewById(R.id.username);
         change = (CustomeTextView) view.findViewById(R.id.change);
-        name = (CustomeEditText) view.findViewById(R.id.name);
+        firstName = (CustomeEditText) view.findViewById(R.id.firstName);
+        lastName = (CustomeEditText) view.findViewById(R.id.lastName);
         update = (CustomeButton) view.findViewById(R.id.update);
         email = (CustomeEditText) view.findViewById(R.id.email);
         phone = (CustomeEditText) view.findViewById(R.id.phone);
@@ -146,11 +169,25 @@ public class MyProfile extends Fragment {
                         JSONObject jsonObject = new JSONObject(result);
                         logoLast = jsonObject.getString("logo");
                         username.setText(jsonObject.getString("username"));
-                        name.setText(jsonObject.getString("name"));
+                        if (jsonObject.getString("name").length() > 0) {
+                            if (!jsonObject.getString("name").contains(" "))
+                                firstName.setText(jsonObject.getString("name"));
+                            else {
+                                firstName.setText(jsonObject.getString("name").substring(0, jsonObject.getString("name").indexOf(" ") - 1));
+                                lastName.setText(jsonObject.getString("name").substring(jsonObject.getString("name").indexOf(" ") + 1));
+                            }
+                        }
                         password.setText(jsonObject.getString("password"));
                         email.setText(jsonObject.getString("email"));
                         phone.setText(jsonObject.getString("phone"));
                         about.setText(jsonObject.getString("about"));
+                        if (phone.getText().length() > 0) {
+                            oldPassword = password.getText().toString();
+                            phone.setEnabled(false);
+                            phone.setBackgroundColor(Color.TRANSPARENT);
+                            email.setBackgroundColor(Color.TRANSPARENT);
+                            email.setEnabled(false);
+                        }
                         if (!jsonObject.getString("logo").equals(" "))
                             Picasso.with(getContext()).load(WebService.imageLink + jsonObject.getString("logo")).transform(new CircleTransform()).into(logo, new Callback() {
                                 @Override
@@ -172,7 +209,7 @@ public class MyProfile extends Fragment {
                     update.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            updateInfo();
+                            checkUpdateInfo();
                         }
                     });
                 }
@@ -184,60 +221,127 @@ public class MyProfile extends Fragment {
 
     }
 
-    private void updateInfo() {
-
+    private void checkUpdateInfo() {
 
         if (dataComplete())
-            new UploadImage(new UploadImage.AsyncResponse() {
-                @Override
-                public void processFinish(boolean output) {
-                    if (output) {
+            if (oldPassword.equals(password.getText().toString())) {
+                updateNow();
+            } else if (oldPassword.equals("")) {
 
-                        UrlData urlData = new UrlData();
-                        try {
-                            urlData.add("id", MainActivity.jsonObjectUser.getString("id"));
-                            urlData.add("username", username.getText().toString());
-                            urlData.add("name", name.getText().toString());
-                            urlData.add("password", password.getText().toString());
-                            urlData.add("email", email.getText().toString());
-                            if (logoUri.size() == 1)
-                                urlData.add("logo", getFileName(logoUri.get(0)));
-                            else
-                                urlData.add("logo", logoLast);
+                sendCode();
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("We have sent you an SMS!");
 
+// Set up the input
+                final EditText input = new EditText(getActivity());
+                input.setHint("Please enter your verification code");
+                input.setInputType(InputType.TYPE_CLASS_PHONE);
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                builder.setView(input);
 
-                            urlData.add("phone", phone.getText().toString());
-                            urlData.add("about", about.getText().toString());
+// Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, input.getText().toString());
+                        signInWithPhoneAuthCredential(credential);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.setCancelable(false);
+                builder.show();
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("please enter old password");
+
+// Set up the input
+                final EditText input = new EditText(getActivity());
+// Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                builder.setView(input);
+
+// Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (input.getText().toString().equals(oldPassword)) {
+                            oldPassword = password.getText().toString();
+                            checkUpdateInfo();
+                        } else {
+                            checkUpdateInfo();
+                            Toast.makeText(getActivity(), "Wrong password, please try again!", Toast.LENGTH_SHORT).show();
                         }
-                        new GetData(new GetData.AsyncResponse() {
-                            @Override
-                            public void processFinish(String result) {
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+            }
+
+    }
+
+    private void updateNow() {
+        new UploadImage(new UploadImage.AsyncResponse() {
+            @Override
+            public void processFinish(boolean output) {
+                if (output) {
+
+                    UrlData urlData = new UrlData();
+                    try {
+                        urlData.add("id", MainActivity.jsonObjectUser.getString("id"));
+                        urlData.add("username", username.getText().toString());
+                        urlData.add("name", firstName.getText().toString() + " " + lastName);
+                        urlData.add("password", password.getText().toString());
+                        urlData.add("email", email.getText().toString());
+                        if (logoUri.size() == 1)
+                            urlData.add("logo", getFileName(logoUri.get(0)));
+                        else
+                            urlData.add("logo", logoLast);
+
+
+                        urlData.add("phone", phone.getText().toString());
+                        urlData.add("about", about.getText().toString());
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    new GetData(new GetData.AsyncResponse() {
+                        @Override
+                        public void processFinish(String result) {
+
+                            try {
 
                                 try {
-
-                                    try {
-                                        FragmentManager fm = getActivity().getSupportFragmentManager();
-                                        FragmentTransaction ft = fm.beginTransaction();
-                                        fragmentHome = new com.example.pc.khaledwaleedshopping.products.home.Home();
-                                        fragmentHome.downScroll = -1;
-                                        ft.replace(R.id.activity_main_content_fragment3, fragmentHome);
-                                        ft.commit();
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-
+                                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                                    FragmentTransaction ft = fm.beginTransaction();
+                                    fragmentHome = new com.example.pc.khaledwaleedshopping.products.home.Home();
+                                    fragmentHome.downScroll = -1;
+                                    ft.replace(R.id.activity_main_content_fragment3, fragmentHome);
+                                    ft.commit();
                                 } catch (Exception e) {
                                     e.printStackTrace();
                                 }
-                            }
-                        }, getActivity(), true).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, WebService.updateClient, urlData.get());
 
-                    }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }, getActivity(), true).executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, WebService.updateClient, urlData.get());
+
                 }
-            }, getActivity(), logoUri);
+            }
+        }, getActivity(), logoUri);
     }
 
     private boolean dataComplete() {
@@ -260,9 +364,13 @@ public class MyProfile extends Fragment {
             phoneError.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
         }
 
-        if (name.getText().length() == 0) {
+        if (firstName.getText().length() == 0) {
             b = false;
-            nameError.setText("Please enter your name");
+            nameError.setText("Please enter your firstName");
+            nameError.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
+        } else if (lastName.getText().length() == 0) {
+            b = false;
+            nameError.setText("Please enter your lastName");
             nameError.setTextColor(ContextCompat.getColor(getContext(), R.color.red));
         }
 
@@ -274,7 +382,7 @@ public class MyProfile extends Fragment {
         passwordError.setTextColor(ContextCompat.getColor(getContext(), R.color.mainColor));
 
 
-        nameError.setText("Your name");
+        nameError.setText("Your firstName");
         nameError.setTextColor(ContextCompat.getColor(getContext(), R.color.mainColor));
 
         emailError.setText("Email address");
@@ -314,4 +422,57 @@ public class MyProfile extends Fragment {
         return currentDateandTime + result;
     }
 
+    private void sendCode() {
+        PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                "+2" + phone.getText().toString(),        // Phone number to verify
+                60,                 // Timeout duration
+                TimeUnit.SECONDS,   // Unit of timeout
+                getActivity(),               // Activity (for callback binding)
+                new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+                    @Override
+                    public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
+                        Log.e("Code", "!" + phoneAuthCredential.getSmsCode());
+                        code = (phoneAuthCredential.getSmsCode());
+                    }
+
+                    @Override
+                    public void onCodeSent(String verificationId, PhoneAuthProvider.ForceResendingToken token) {
+                        MyProfile.this.verificationId = verificationId;
+                        Log.e("Token", token.toString());
+                    }
+
+                    @Override
+                    public void onVerificationFailed(FirebaseException e) {
+                        Log.e("Error SMS:", e.getMessage());
+                    }
+                });
+    }
+
+    private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d("SMS State", "signInWithCredential:success");
+
+                            FirebaseUser user = task.getResult().getUser();
+                            updateNow();
+
+                            // ...
+                        } else {
+                            Toast.makeText(getActivity(), "Wrong code, please try again!", Toast.LENGTH_SHORT).show();
+                            checkUpdateInfo();
+                            // Sign in failed, display a message and update the UI
+                            Log.w("SMS State", "signInWithCredential:failure", task.getException());
+                            if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                // The verification code entered was invalid
+                            }
+                        }
+                    }
+                });
+    }
 }

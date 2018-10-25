@@ -1,5 +1,6 @@
 package com.example.pc.khaledwaleedshopping.masseges;
 
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -47,6 +48,7 @@ public class Inbox extends Fragment {
         try {
             if (!MainActivity.jsonObjectUser.getString("countUnSeen").equals("0")) {
                 msgNumber.setVisibility(View.GONE);
+                msgNumber.setTextColor(Color.WHITE);
                 msgNumber.setText(MainActivity.jsonObjectUser.getString("countUnSeen"));
             } else
                 msgNumber.setVisibility(View.GONE);
@@ -177,7 +179,7 @@ public class Inbox extends Fragment {
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public CustomeTextView date, msg, name, unSeen,productName;
+        public CustomeTextView date, msg, name, unSeen, productName;
         public ImageView logo;
 
         public MyViewHolder(View v) {
@@ -188,7 +190,7 @@ public class Inbox extends Fragment {
             logo = (ImageView) v.findViewById(R.id.logo);
             name = (CustomeTextView) v.findViewById(R.id.name);
             unSeen = (CustomeTextView) v.findViewById(R.id.unSeen);
-            productName=(CustomeTextView)v.findViewById(R.id.productName);
+            productName = (CustomeTextView) v.findViewById(R.id.productName);
 
         }
 

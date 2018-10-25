@@ -29,10 +29,8 @@
             android:ellipsize="end"
             android:gravity="right|center_vertical"
             android:maxLines="1"
-            android:text="My profile"
             android:textColor="@color/black_8am2"
-            android:textSize="@dimen/text_Small"
-            />
+            android:textSize="@dimen/text_Small" />
     </LinearLayout>
 
     <ScrollView
@@ -73,7 +71,8 @@
                 android:paddingRight="@dimen/dimen_Small"
                 android:text="Username"
                 android:textColor="@color/mainColor"
-                android:textSize="@dimen/text_Small" />
+                android:textSize="@dimen/text_Small"
+                android:visibility="gone" />
 
             <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
                 android:id="@+id/username"
@@ -90,6 +89,39 @@
                 android:paddingRight="@dimen/dimen_Small"
                 android:text="Username"
                 android:textColor="@color/black_fat7"
+                android:textSize="@dimen/text_Small"
+                android:visibility="gone" />
+
+
+            <!-- email -->
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
+                android:id="@+id/emailError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_Medium"
+                android:paddingLeft="@dimen/margin_Small"
+                android:paddingRight="@dimen/dimen_Small"
+                android:text="Email address"
+                android:textColor="@color/mainColor"
+                android:textSize="@dimen/text_Small" />
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_Large"
+                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_marginRight="@dimen/margin_Medium"
+                android:backgroundTint="@android:color/transparent"
+                android:clickable="false"
+                android:drawableLeft="@drawable/edit_email"
+                android:drawablePadding="@dimen/margin_Medium"
+                android:ellipsize="end"
+                android:enabled="false"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:padding="@dimen/margin_Small"
+                android:textColor="@color/black_fat7"
                 android:textSize="@dimen/text_Small" />
 
 
@@ -98,7 +130,10 @@
                 android:id="@+id/nameError"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_Small"
                 android:layout_marginLeft="@dimen/margin_Medium"
+                android:drawableLeft="@drawable/edit_username"
+                android:drawablePadding="@dimen/margin_Medium"
                 android:paddingLeft="@dimen/margin_Small"
                 android:paddingRight="@dimen/dimen_Small"
                 android:text="Your name"
@@ -106,18 +141,31 @@
                 android:textSize="@dimen/text_Small" />
 
             <com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText
-                android:id="@+id/name"
+                android:id="@+id/firstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_Medium"
+                android:layout_marginRight="@dimen/margin_Medium"
+                android:background="@drawable/shadow"
+                android:ellipsize="end"
+                android:hint="First Name"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="@dimen/margin_Small"
+                android:textColor="@color/black_fat7"
+                android:textSize="@dimen/text_Small" />
+
+
+            <com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText
+                android:id="@+id/lastName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin_Large"
                 android:layout_marginLeft="@dimen/margin_Medium"
                 android:layout_marginRight="@dimen/margin_Medium"
                 android:background="@drawable/shadow"
-                android:drawableLeft="@drawable/edit_username"
-                android:drawablePadding="@dimen/margin_Medium"
-                android:drawableRight="@drawable/required"
                 android:ellipsize="end"
-                android:hint="enter Your real name"
+                android:hint="LastName"
                 android:inputType="text"
                 android:maxLines="1"
                 android:padding="@dimen/margin_Small"
@@ -149,38 +197,8 @@
                 android:drawablePadding="@dimen/margin_Medium"
                 android:drawableRight="@drawable/required"
                 android:ellipsize="end"
-                android:hint="enter password"
-                android:inputType="text"
-                android:maxLines="1"
-                android:padding="@dimen/margin_Small"
-                android:textColor="@color/black_fat7"
-                android:textSize="@dimen/text_Small" />
-
-            <!-- email -->
-            <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
-                android:id="@+id/emailError"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_Medium"
-                android:paddingLeft="@dimen/margin_Small"
-                android:paddingRight="@dimen/dimen_Small"
-                android:text="Email address"
-                android:textColor="@color/mainColor"
-                android:textSize="@dimen/text_Small" />
-
-            <com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText
-                android:id="@+id/email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_Large"
-                android:layout_marginLeft="@dimen/margin_Medium"
-                android:layout_marginRight="@dimen/margin_Medium"
-                android:background="@drawable/shadow"
-                android:drawableLeft="@drawable/edit_email"
-                android:drawablePadding="@dimen/margin_Medium"
-                android:ellipsize="end"
-                android:hint="enter email address"
-                android:inputType="textEmailAddress"
+                android:hint="Enter your password"
+                android:inputType="textPassword"
                 android:maxLines="1"
                 android:padding="@dimen/margin_Small"
                 android:textColor="@color/black_fat7"
@@ -211,8 +229,9 @@
                 android:drawablePadding="@dimen/margin_Medium"
                 android:drawableRight="@drawable/required"
                 android:ellipsize="end"
-                android:hint="enter phone number"
+                android:hint="Enter your phone number"
                 android:inputType="phone"
+                android:maxLength="11"
                 android:maxLines="1"
                 android:padding="@dimen/margin_Small"
                 android:textColor="@color/black_fat7"
@@ -238,7 +257,7 @@
                 android:layout_marginLeft="@dimen/margin_Medium"
                 android:layout_marginRight="@dimen/margin_Medium"
                 android:background="@drawable/shadow"
-                android:hint="tell us about your self and your style"
+                android:hint="Tell us about yourself and your style"
                 android:inputType="textMultiLine"
                 android:padding="@dimen/margin_Small"
                 android:textColor="@color/black_fat7"
@@ -251,7 +270,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="@dimen/margin_Medium"
                 android:background="@color/red"
-                android:text="Update info"
+                android:text="Confirm"
                 android:textColor="@color/white" />
 
 

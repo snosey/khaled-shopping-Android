@@ -61,7 +61,7 @@ public class MyItems extends Fragment {
                             favorProducts.put(jsonArray.getJSONObject(postion));
                         if (favorProducts.length() == 0) {
                             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-                            alertDialogBuilder.setMessage("You have no items yet").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            alertDialogBuilder.setMessage("You didn't list any items yet.").setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
                                     getActivity().onBackPressed();
                                 }

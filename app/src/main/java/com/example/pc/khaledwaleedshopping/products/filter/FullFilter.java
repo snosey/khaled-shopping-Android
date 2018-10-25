@@ -41,6 +41,7 @@ public class FullFilter extends Dialog {
     private String id;
     CrystalRangeSeekbar price;
     CheckBox swap;
+    private int infinity = 2100;
 
     public FullFilter(@NonNull final FragmentActivity context) {
         super(context, android.R.style.Theme_Holo_Light_NoActionBar_Fullscreen);
@@ -64,12 +65,12 @@ public class FullFilter extends Dialog {
             price.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
                 @Override
                 public void valueChanged(Number minValue, Number maxValue) {
-                    if (minValue.intValue() == 2100)
+                    if (minValue.intValue() == infinity)
                         tvMin.setText("∞");
                     else
                         tvMin.setText(String.valueOf(minValue));
 
-                    if (maxValue.intValue() == 2100)
+                    if (maxValue.intValue() == infinity)
                         tvMax.setText("∞");
                     else
                         tvMax.setText(String.valueOf(maxValue));
@@ -169,9 +170,15 @@ public class FullFilter extends Dialog {
             urlData.add("swap", "1");
         else
             urlData.add("swap", "-1");
-        urlData.add("price_to", price.getSelectedMaxValue().toString());
-        urlData.add("price_from", price.getSelectedMinValue().toString());
+        if (price.getSelectedMinValue().intValue() == infinity)
+            urlData.add("price_from", "100000");
+        else
+            urlData.add("price_from", price.getSelectedMinValue().toString());
 
+        if (price.getSelectedMaxValue().intValue() == infinity)
+            urlData.add("price_to", "100000");
+        else
+            urlData.add("price_to", price.getSelectedMaxValue().toString());
 
         urlData.add("id_brand", brandId);
 

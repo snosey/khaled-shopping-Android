@@ -2,6 +2,7 @@ package com.example.pc.khaledwaleedshopping.myprofile;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -27,7 +28,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class Home extends Fragment {
 
 
-    CustomeTextView favor, myItems, myProfile, logout, inviteFriends;
+    CustomeTextView favor, myItems, myProfile, logout, inviteFriends, contactUs;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class Home extends Fragment {
         try {
             if (!MainActivity.jsonObjectUser.getString("countUnSeen").equals("0")) {
                 msgNumber.setVisibility(View.VISIBLE);
+                msgNumber.setTextColor(Color.WHITE);
                 msgNumber.setText(MainActivity.jsonObjectUser.getString("countUnSeen"));
             } else
                 msgNumber.setVisibility(View.INVISIBLE);
@@ -45,11 +47,23 @@ public class Home extends Fragment {
             e.printStackTrace();
         }
         favor = (CustomeTextView) view.findViewById(R.id.favor);
+        contactUs = (CustomeTextView) view.findViewById(R.id.contactUs);
+        contactUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent email = new Intent(Intent.ACTION_SEND);
+                email.putExtra(Intent.EXTRA_EMAIL, new String[]{"contact@virclo.com"});
+                email.putExtra(Intent.EXTRA_SUBJECT, "subject");
+                email.putExtra(Intent.EXTRA_TEXT, "message");
+                email.setType("message/rfc822");
+                startActivity(Intent.createChooser(email, "Get in touch"));
+            }
+        });
         inviteFriends = (CustomeTextView) view.findViewById(R.id.inviteFriends);
         inviteFriends.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String shareBody = "Download Virclo to see the latest products... http://www.example.com";
+                String shareBody = "Download Virclo to sell, buy and swap ... http://www.example.com";
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Virclo");

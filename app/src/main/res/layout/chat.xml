@@ -55,10 +55,11 @@
         <ImageView
             android:id="@+id/sendImage"
             android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:tint="@android:color/darker_gray"
             android:layout_margin="@dimen/margin_Small"
-            android:src="@drawable/send_image"
-            android:layout_height="match_parent"
-            android:layout_weight=".1" />
+            android:layout_weight=".1"
+            android:src="@drawable/send_image" />
 
         <com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText
 

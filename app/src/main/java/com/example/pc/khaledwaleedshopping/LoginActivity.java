@@ -111,12 +111,13 @@ public class LoginActivity extends FragmentActivity {
     }
 
     private void signup() {
-        Dialog dialog = new Dialog(this);
+        Dialog dialog = new Dialog(this, android.R.style.Theme_Holo_Light_NoActionBar_Fullscreen);
         dialog.setContentView(R.layout.dialog_signup);
         CustomeButton signup = (CustomeButton) dialog.findViewById(R.id.signup);
         final CustomeEditText username = (CustomeEditText) dialog.findViewById(R.id.username);
         final CustomeEditText email = (CustomeEditText) dialog.findViewById(R.id.email);
         final CustomeEditText password = (CustomeEditText) dialog.findViewById(R.id.password);
+        final CustomeEditText confirmPassword = (CustomeEditText) dialog.findViewById(R.id.confirmPassword);
         final CustomeTextView usernameError = (CustomeTextView) dialog.findViewById(R.id.usernameError);
         final CustomeTextView emailError = (CustomeTextView) dialog.findViewById(R.id.emailError);
         final CustomeTextView passwordError = (CustomeTextView) dialog.findViewById(R.id.passwordError);
@@ -142,6 +143,10 @@ public class LoginActivity extends FragmentActivity {
                     passwordError.setVisibility(View.VISIBLE);
                     passwordError.setText("Please enter password 6 character or more!");
                     checkData[0] = false;
+                } else if (!confirmPassword.getText().toString().equals(password.getText().toString())) {
+                    passwordError.setVisibility(View.VISIBLE);
+                    passwordError.setText("Password is not match!");
+                    checkData[0] = false;
                 }
                 if (checkData[0])
                     sendDataForSignup(username.getText().toString(), email.getText().toString(), password.getText().toString(), "normal");
@@ -156,7 +161,7 @@ public class LoginActivity extends FragmentActivity {
     }
 
     private void signin() {
-        Dialog dialog = new Dialog(this);
+        Dialog dialog = new Dialog(this, android.R.style.Theme_Holo_Light_NoActionBar_Fullscreen);
         dialog.setContentView(R.layout.dialog_signin);
         CustomeButton signin = (CustomeButton) dialog.findViewById(R.id.signin);
         CustomeButton send = (CustomeButton) dialog.findViewById(R.id.send);
@@ -346,8 +351,7 @@ public class LoginActivity extends FragmentActivity {
                     } else if (kind.equals("normal")) {
                         background.setVisibility(View.GONE);
                         new CustomeDialogMassege(LoginActivity.this, "Username or password is not valid!");
-                    }
-                    else {
+                    } else {
                         background.setVisibility(View.GONE);
                         sendDataForSignup(username, email, password, kind);
                     }

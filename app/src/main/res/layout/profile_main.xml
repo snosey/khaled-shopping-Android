@@ -185,6 +185,7 @@
                 android:drawableTop="@drawable/aboutus"
                 android:gravity="center"
                 android:text="Contact us"
+                android:id="@+id/contactUs"
                 android:textColor="@color/black_fat7"
                 android:textSize="@dimen/text_Medium" />
 

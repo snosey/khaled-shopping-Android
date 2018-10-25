@@ -121,6 +121,7 @@ public class ProductProfile extends Fragment {
         memberItems = (CustomeTextView) view.findViewById(R.id.memberItems);
         similarItems = (CustomeTextView) view.findViewById(R.id.similarItems);
 
+        similarItems.setTextColor(ResourcesCompat.getColor(getResources(), android.R.color.darker_gray, null));
         memberItems.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -299,10 +300,10 @@ public class ProductProfile extends Fragment {
 
                         if (productDetails.getString("isLove").equals("false")) {
                             favourite.setTag("not love");
-                            favourite.setImageResource(R.drawable.not_love);
+                            favourite.setImageResource(R.drawable.myfavor);
                         } else {
                             favourite.setTag("love");
-                            favourite.setImageResource(R.drawable.full_love);
+                            favourite.setImageResource(R.drawable.myfavorfull);
                         }
                         favourite.setOnClickListener(new View.OnClickListener() {
                             @Override
@@ -325,13 +326,13 @@ public class ProductProfile extends Fragment {
                                         favourite.setTag("not love");
                                         urlDataLove.add("state", "remove");
                                         count--;
-                                        favourite.setImageResource(R.drawable.not_love);
+                                        favourite.setImageResource(R.drawable.myfavor);
                                     } else {
                                         favourite.setTag("love");
                                         urlDataLove.add("state", "add");
                                         count++;
                                         Toast.makeText(getActivity(), "added to your favorites", Toast.LENGTH_SHORT).show();
-                                        favourite.setImageResource(R.drawable.full_love);
+                                        favourite.setImageResource(R.drawable.myfavorfull);
                                     }
                                     peopleIntersted.setText((int) ((Integer.parseInt(productDetails.getString("love")) + count)) + "");
                                 } catch (JSONException e) {

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="@dimen/dimen_Large"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/user"
-        android:drawablePadding="@dimen/margin_Small"
         android:layout_margin="@dimen/margin_Medium"
+        android:drawablePadding="@dimen/margin_Small"
+        android:drawableStart="@drawable/user"
+        android:backgroundTint="@color/black_8am2"
         android:hint="username"
         android:inputType="text"
         android:maxLines="1"
@@ -31,10 +32,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_Medium"
+        android:backgroundTint="@color/black_8am2"
+        android:drawablePadding="@dimen/margin_Small"
+        android:drawableStart="@drawable/mail"
         android:hint="email"
         android:inputType="text"
-        android:drawableStart="@drawable/mail"
-        android:drawablePadding="@dimen/margin_Small"
         android:maxLines="1"
         android:textSize="@dimen/text_Small" />
 
@@ -54,11 +56,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_Medium"
-        android:hint="password"
-        android:inputType="text"
-        android:maxLines="1"
-        android:drawableStart="@drawable/password"
+        android:backgroundTint="@color/black_8am2"
         android:drawablePadding="@dimen/margin_Small"
+        android:drawableStart="@drawable/password"
+        android:hint="password"
+        android:inputType="textPassword"
+        android:maxLines="1"
+        android:textSize="@dimen/text_Small" />
+
+    <com.example.pc.khaledwaleedshopping.Support.design.CustomeEditText
+        android:id="@+id/confirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_Medium"
+        android:backgroundTint="@color/black_8am2"
+        android:drawablePadding="@dimen/margin_Small"
+        android:hint="verify password"
+        android:maxLines="1"
+        android:inputType="textPassword"
         android:textSize="@dimen/text_Small" />
 
     <com.example.pc.khaledwaleedshopping.Support.design.CustomeTextView
@@ -76,8 +91,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/mainColor"
-        android:text="Sign up"
+        android:text="Continue"
         android:textAllCaps="false"
+        android:layout_margin="@dimen/margin_Medium"
         android:textColor="@color/white"
         android:textSize="@dimen/text_Small" />
 

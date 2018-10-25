@@ -148,7 +148,7 @@ public class Chat extends Fragment {
     private void sendMsg(String kind) {
         {
             if (kind.equals(""))
-            kind = msgText.getText().toString();
+                kind = msgText.getText().toString();
 
             if (!kind.equals("")) {
                 UrlData urlData = new UrlData();
@@ -275,12 +275,20 @@ public class Chat extends Fragment {
 
                     RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                     params.addRule(RelativeLayout.RIGHT_OF, R.id.logo);
-                    params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+                    //     params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+                    params.topMargin = 20;
                     holder.msg.setLayoutParams(params);
-                    holder.msg.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
-                    holder.msg.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.mainColor)));
+                    holder.msg.setTextColor(ContextCompat.getColor(getContext(), R.color.black_8am2));
+                    holder.msg.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.white)));
                     holder.date.setVisibility(View.VISIBLE);
-                    holder.logo.setVisibility(View.VISIBLE);
+
+                    if (position + 1 < chatList.length() && chatList.getJSONObject(position + 1).getString("id_sent").equals(clientId)) {
+                        holder.logo.setVisibility(View.GONE);
+                        holder.date.setVisibility(View.GONE);
+                    } else {
+                        holder.logo.setVisibility(View.VISIBLE);
+                        holder.date.setVisibility(View.VISIBLE);
+                    }
                     holder.logo.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -327,13 +335,14 @@ public class Chat extends Fragment {
                 } else {
                     holder.date.setVisibility(View.GONE);
                     holder.logo.setVisibility(View.GONE);
-                    holder.msg.setTextColor(ContextCompat.getColor(getContext(), R.color.black_8am2));
 
-                    if (chatRow.getString("seen").equals("1"))
-                        holder.msg.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.white)));
-                    else
+                    if (chatRow.getString("seen").equals("0")) {
+                        holder.msg.setTextColor(ContextCompat.getColor(getContext(), R.color.black_8am2));
                         holder.msg.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.whiteDark)));
-
+                    } else {
+                        holder.msg.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+                        holder.msg.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.colorPrimary)));
+                    }
                     RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                     params.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
                     params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
